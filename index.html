@@ -7,37 +7,40 @@
 <title>Alarmify – Smart Alarm Clock</title>
 
 <meta name="description"
-content="Alarmify – Smart Alarm Clock. Wake up the right way with mission-based alarms, volume lock, anti-uninstall protection, and more.">
+content="Alarmify is a smart alarm clock designed to help you wake up, complete wake-up missions, and start your day on track.">
 
-<meta name="theme-color" content="#ff9d00">
+<meta name="theme-color" content="#ff9800">
 
 <style>
+:root{
+    --orange:#ff9800;
+    --orange-light:#ffb52e;
+    --orange-dark:#f57c00;
 
-:root {
-    --orange: #ff9d00;
-    --orange-light: #ffb52e;
-    --bg: #050608;
-    --card: #101216;
-    --card2: #15181d;
-    --white: #ffffff;
-    --text: #f5f5f5;
-    --muted: #a9adb6;
-    --green: #24d47a;
-    --border: rgba(255,255,255,0.10);
-    --max: 1180px;
+    --black:#050505;
+    --black-2:#0a0a0a;
+    --black-3:#111111;
+
+    --white:#ffffff;
+    --gray:#a7a7a7;
+    --gray-light:#d6d6d6;
+
+    --border:rgba(255,255,255,.10);
+
+    --max-width:1200px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
+body{
     font-family:
         Inter,
         -apple-system,
@@ -49,1215 +52,952 @@ body {
 
     background:
         radial-gradient(
-            circle at 80% 5%,
-            rgba(255,157,0,.13),
+            circle at 80% 0%,
+            rgba(255,152,0,.13),
             transparent 30%
         ),
-        radial-gradient(
-            circle at 10% 40%,
-            rgba(255,157,0,.06),
-            transparent 25%
-        ),
-        var(--bg);
+        var(--black);
 
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
+    color:var(--white);
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+img{
+    max-width:100%;
+    display:block;
 }
 
 /* =========================
    NAVBAR
 ========================= */
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:9999;
 
-    z-index: 1000;
+    height:76px;
 
-    height: 76px;
+    background:rgba(5,5,5,.84);
 
-    background: rgba(5,6,8,.80);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    border-bottom:
-        1px solid rgba(255,255,255,.07);
-
-    transition: .3s;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.nav-inner {
-    width: min(
+.nav-container{
+    width:min(
         calc(100% - 40px),
-        var(--max)
+        var(--max-width)
     );
 
-    height: 100%;
+    height:100%;
+    margin:auto;
 
-    margin: auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-/* LOGO */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
 
-.logo {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    font-size: 22px;
-
-    font-weight: 800;
+    font-size:21px;
+    font-weight:850;
 }
 
-.logo-mark {
-    width: 42px;
-    height: 42px;
+.logo-icon{
+    width:43px;
+    height:43px;
 
-    border-radius: 12px;
+    display:grid;
+    place-items:center;
 
-    display: grid;
-
-    place-items: center;
+    border-radius:13px;
 
     background:
         linear-gradient(
             135deg,
-            #ffb21c,
-            #ff6d00
+            var(--orange-light),
+            var(--orange-dark)
         );
 
     box-shadow:
-        0 0 30px rgba(255,157,0,.25);
+        0 0 35px rgba(255,152,0,.25);
+
+    font-size:22px;
 }
 
-.logo-mark span {
-    font-size: 23px;
+.logo span{
+    color:var(--orange);
 }
 
-.logo-text span {
-    color: var(--orange);
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+
+    color:#c7c7c7;
+
+    font-size:14px;
+    font-weight:650;
 }
 
-/* NAV LINKS */
-
-.nav-links {
-    display: flex;
-
-    align-items: center;
-
-    gap: 35px;
-
-    color: #c9cbd0;
-
-    font-size: 14px;
-
-    font-weight: 650;
+.nav-links a{
+    position:relative;
+    transition:.25s;
 }
 
-.nav-links a {
-    position: relative;
-
-    transition: .25s;
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--orange);
 }
 
-.nav-links a:hover {
-    color: var(--orange);
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-9px;
+
+    width:0;
+    height:2px;
+
+    background:var(--orange);
+
+    transition:.25s;
 }
 
-.nav-links a:not(.nav-button)::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -7px;
-
-    width: 0;
-    height: 2px;
-
-    background: var(--orange);
-
-    transition: .25s;
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
 }
 
-.nav-links a:not(.nav-button):hover::after {
-    width: 100%;
+/* =========================
+   GENERAL
+========================= */
+
+.container{
+    width:min(
+        calc(100% - 40px),
+        var(--max-width)
+    );
+
+    margin:auto;
+}
+
+section{
+    position:relative;
+}
+
+.section{
+    padding:120px 0;
+}
+
+.section-dark{
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,152,0,.09),
+            transparent 48%
+        );
+
+    border-top:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.section-header{
+    max-width:780px;
+    margin:0 auto 70px;
+    text-align:center;
+}
+
+.section-label{
+    color:var(--orange);
+
+    font-size:12px;
+    font-weight:850;
+
+    letter-spacing:2px;
+
+    margin-bottom:14px;
+}
+
+.section-header h2{
+    font-size:
+        clamp(40px,5vw,64px);
+
+    line-height:1.03;
+
+    letter-spacing:-2.5px;
+
+    margin-bottom:20px;
+}
+
+.section-header h2 span{
+    color:var(--orange);
+}
+
+.section-header p{
+    color:var(--gray);
+    font-size:18px;
 }
 
 /* =========================
    HERO
 ========================= */
 
-.hero {
-    min-height: 850px;
+.hero{
+    min-height:900px;
 
-    padding-top: 150px;
+    padding:
+        155px 0 110px;
 
-    padding-bottom: 100px;
+    display:flex;
+    align-items:center;
 
-    position: relative;
+    overflow:hidden;
 }
 
-.hero::before {
-    content: "";
+.hero::before{
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    width: 700px;
-    height: 700px;
+    width:700px;
+    height:700px;
 
-    right: -250px;
-    top: 70px;
+    right:-280px;
+    top:80px;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,157,0,.16),
+            rgba(255,152,0,.18),
             transparent 68%
         );
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
-.hero-inner {
-    width: min(
-        calc(100% - 40px),
-        var(--max)
-    );
+.hero-grid{
+    display:grid;
 
-    margin: auto;
+    grid-template-columns:
+        1fr 1.1fr;
 
-    display: grid;
+    align-items:center;
 
-    grid-template-columns: 1fr 1fr;
-
-    align-items: center;
-
-    gap: 50px;
+    gap:50px;
 }
 
-.hero-content {
-    position: relative;
-
-    z-index: 2;
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
-.eyebrow {
-    display: inline-flex;
+.badge{
+    display:inline-flex;
 
-    align-items: center;
+    padding:8px 16px;
 
-    gap: 8px;
+    border-radius:999px;
 
-    padding: 8px 15px;
-
-    border-radius: 999px;
+    color:var(--orange);
 
     background:
-        rgba(255,157,0,.09);
+        rgba(255,152,0,.08);
 
     border:
-        1px solid rgba(255,157,0,.25);
+        1px solid rgba(255,152,0,.28);
 
-    color: var(--orange);
+    font-size:12px;
+    font-weight:800;
 
-    font-size: 13px;
+    letter-spacing:1px;
 
-    font-weight: 800;
-
-    letter-spacing: .5px;
-
-    margin-bottom: 25px;
+    margin-bottom:25px;
 }
 
-.hero h1 {
+.hero h1{
     font-size:
-        clamp(50px, 7vw, 86px);
+        clamp(55px,7vw,90px);
 
-    line-height: .98;
+    line-height:.96;
 
-    letter-spacing: -4px;
+    letter-spacing:-5px;
 
-    font-weight: 900;
+    font-weight:900;
 
-    margin-bottom: 25px;
+    margin-bottom:28px;
 }
 
-.hero h1 span {
-    color: var(--orange);
+.hero h1 span{
+    color:var(--orange);
 
     text-shadow:
-        0 0 40px rgba(255,157,0,.18);
+        0 0 50px rgba(255,152,0,.16);
 }
 
-.hero-description {
-    max-width: 580px;
+.hero-description{
+    max-width:590px;
 
-    font-size: 21px;
+    color:var(--gray);
 
-    color: var(--muted);
+    font-size:20px;
 
-    margin-bottom: 35px;
+    margin-bottom:32px;
 }
 
-.hero-description strong {
-    color: white;
+.hero-description strong{
+    color:white;
 }
 
-.hero-buttons {
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
 }
 
-.primary-btn {
-    display: inline-flex;
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-    align-items: center;
+    padding:15px 23px;
 
-    gap: 10px;
+    border-radius:13px;
 
-    padding: 15px 24px;
+    font-weight:800;
 
-    background: var(--orange);
+    transition:.25s;
+}
 
-    color: #0a0a0a;
-
-    border-radius: 13px;
-
-    font-weight: 850;
+.btn-primary{
+    background:var(--orange);
+    color:#111;
 
     box-shadow:
-        0 15px 40px rgba(255,157,0,.18);
-
-    transition: .25s;
+        0 15px 45px rgba(255,152,0,.20);
 }
 
-.primary-btn:hover {
-    transform: translateY(-3px);
+.btn-primary:hover{
+    transform:translateY(-3px);
 
     box-shadow:
-        0 20px 50px rgba(255,157,0,.28);
+        0 20px 55px rgba(255,152,0,.32);
 }
 
-.secondary-btn {
-    padding: 14px 22px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 13px;
-
-    color: #ddd;
+.btn-secondary{
+    border:1px solid var(--border);
 
     background:
         rgba(255,255,255,.035);
 
-    transition: .25s;
+    color:#ddd;
 }
 
-.secondary-btn:hover {
+.btn-secondary:hover{
     border-color:
-        rgba(255,157,0,.5);
+        rgba(255,152,0,.45);
 
-    color: var(--orange);
+    color:var(--orange);
 }
 
-/* HERO IMAGE */
+.hero-image{
+    position:relative;
 
-.hero-image {
-    position: relative;
-
-    display: flex;
-
-    justify-content: center;
+    display:flex;
+    justify-content:center;
 }
 
-.hero-image img {
-    width: min(100%, 620px);
+.hero-image::before{
+    content:"";
+
+    position:absolute;
+
+    width:80%;
+    height:80%;
+
+    top:10%;
+    left:10%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,152,0,.20),
+            transparent 70%
+        );
+
+    filter:blur(35px);
+
+    z-index:-1;
+}
+
+.hero-image img{
+    width:100%;
 
     filter:
         drop-shadow(
-            0 35px 80px rgba(0,0,0,.75)
-        )
-        drop-shadow(
-            0 0 50px rgba(255,157,0,.08)
+            0 35px 75px rgba(0,0,0,.75)
         );
 
-    animation:
-        float 5s ease-in-out infinite;
+    animation:float 5s ease-in-out infinite;
 }
 
-@keyframes float {
-
-    0%,100% {
-        transform: translateY(0);
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
     }
 
-    50% {
-        transform: translateY(-12px);
+    50%{
+        transform:translateY(-12px);
     }
-
 }
 
 /* =========================
-   FEATURES
+   FEATURE CARDS
 ========================= */
 
-.features {
-    padding: 30px 0 110px;
+.feature-strip{
+    padding:0 0 110px;
 }
 
-.container {
-    width: min(
-        calc(100% - 40px),
-        var(--max)
-    );
-
-    margin: auto;
-}
-
-.feature-grid {
-    display: grid;
+.feature-grid{
+    display:grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
-    gap: 14px;
+    gap:15px;
 }
 
-.feature-card {
+.feature-card{
+    padding:27px 20px;
+
+    text-align:center;
+
+    border-radius:19px;
+
     background:
         linear-gradient(
             145deg,
-            rgba(255,157,0,.055),
+            rgba(255,152,0,.07),
             rgba(255,255,255,.025)
         );
 
     border:
-        1px solid rgba(255,157,0,.18);
+        1px solid rgba(255,152,0,.17);
 
-    border-radius: 18px;
-
-    padding: 25px 20px;
-
-    text-align: center;
-
-    transition: .3s;
+    transition:.3s;
 }
 
-.feature-card:hover {
-    transform: translateY(-6px);
+.feature-card:hover{
+    transform:translateY(-6px);
 
     border-color:
-        rgba(255,157,0,.55);
-
-    background:
-        rgba(255,157,0,.08);
+        rgba(255,152,0,.50);
 }
 
-.feature-icon {
-    width: 52px;
-    height: 52px;
+.feature-icon{
+    width:52px;
+    height:52px;
 
-    margin: 0 auto 15px;
+    margin:0 auto 15px;
 
-    border-radius: 15px;
+    display:grid;
+    place-items:center;
 
-    display: grid;
+    border-radius:15px;
 
-    place-items: center;
+    color:var(--orange);
 
     background:
-        rgba(255,157,0,.10);
+        rgba(255,152,0,.09);
 
     border:
-        1px solid rgba(255,157,0,.25);
+        1px solid rgba(255,152,0,.24);
 
-    color: var(--orange);
-
-    font-size: 25px;
+    font-size:23px;
 }
 
-.feature-card h3 {
-    font-size: 16px;
-
-    margin-bottom: 7px;
+.feature-card h3{
+    font-size:16px;
+    margin-bottom:6px;
 }
 
-.feature-card p {
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section {
-    padding: 110px 0;
-}
-
-.section-header {
-    text-align: center;
-
-    max-width: 760px;
-
-    margin: 0 auto 60px;
-}
-
-.section-label {
-    color: var(--orange);
-
-    text-transform: uppercase;
-
-    font-size: 12px;
-
-    font-weight: 850;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 12px;
-}
-
-.section-title {
-    font-size:
-        clamp(38px, 5vw, 60px);
-
-    line-height: 1.05;
-
-    letter-spacing: -2px;
-
-    font-weight: 900;
-
-    margin-bottom: 17px;
-}
-
-.section-title span {
-    color: var(--orange);
-}
-
-.section-subtitle {
-    color: var(--muted);
-
-    font-size: 18px;
+.feature-card p{
+    color:var(--gray);
+    font-size:13px;
 }
 
 /* =========================
    SHOWCASE
 ========================= */
 
-.showcase {
-    display: grid;
+.showcase{
+    display:grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 70px;
+    gap:80px;
 
-    margin-bottom: 140px;
+    margin-bottom:140px;
 }
 
-.showcase.reverse {
-    direction: rtl;
+.showcase:last-child{
+    margin-bottom:0;
 }
 
-.showcase.reverse > * {
-    direction: ltr;
+.showcase.reverse{
+    direction:rtl;
 }
 
-.showcase-image {
-    position: relative;
-
-    display: flex;
-
-    justify-content: center;
+.showcase.reverse > *{
+    direction:ltr;
 }
 
-.showcase-image::before {
-    content: "";
+.showcase-image{
+    display:flex;
+    justify-content:center;
 
-    position: absolute;
+    position:relative;
+}
 
-    width: 70%;
-    height: 70%;
+.showcase-image::before{
+    content:"";
 
-    left: 15%;
-    top: 15%;
+    position:absolute;
+
+    width:70%;
+    height:70%;
+
+    top:15%;
+    left:15%;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,157,0,.17),
+            rgba(255,152,0,.15),
             transparent 70%
         );
 
-    filter: blur(30px);
+    filter:blur(30px);
 
-    z-index: -1;
+    z-index:-1;
 }
 
-.showcase-image img {
-    max-height: 680px;
+.showcase-image img{
+    max-height:780px;
+    width:auto;
+    max-width:100%;
 
-    width: auto;
-
-    max-width: 100%;
-
-    border-radius: 25px;
+    border-radius:25px;
 
     filter:
         drop-shadow(
-            0 35px 60px rgba(0,0,0,.6)
+            0 30px 60px rgba(0,0,0,.70)
         );
 }
 
-.showcase-content {
-    max-width: 530px;
+.showcase-content{
+    max-width:550px;
 }
 
-.showcase-number {
-    width: 48px;
-    height: 48px;
+.step{
+    width:50px;
+    height:50px;
 
-    border-radius: 14px;
+    display:grid;
+    place-items:center;
 
-    display: grid;
+    border-radius:15px;
 
-    place-items: center;
+    color:#111;
+    background:var(--orange);
 
-    background: var(--orange);
+    font-weight:900;
 
-    color: #111;
-
-    font-weight: 900;
-
-    margin-bottom: 22px;
+    margin-bottom:22px;
 }
 
-.showcase h2 {
-    font-size: 42px;
+.showcase-content h2{
+    font-size:
+        clamp(35px,4vw,50px);
 
-    line-height: 1.05;
+    line-height:1.05;
 
-    letter-spacing: -1.5px;
+    letter-spacing:-1.7px;
 
-    margin-bottom: 20px;
+    margin-bottom:20px;
 }
 
-.showcase h2 span {
-    color: var(--orange);
+.showcase-content h2 span{
+    color:var(--orange);
 }
 
-.showcase p {
-    color: var(--muted);
+.showcase-content p{
+    color:var(--gray);
 
-    font-size: 18px;
+    font-size:18px;
 
-    margin-bottom: 25px;
+    margin-bottom:25px;
 }
 
-.check-list {
-    list-style: none;
+.check-list{
+    list-style:none;
 
-    display: grid;
-
-    gap: 13px;
+    display:grid;
+    gap:13px;
 }
 
-.check-list li {
-    display: flex;
+.check-list li{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-    align-items: center;
-
-    gap: 12px;
-
-    color: #ddd;
+    color:#ddd;
 }
 
-.check {
-    width: 27px;
-    height: 27px;
+.check{
+    width:27px;
+    height:27px;
 
-    border-radius: 50%;
+    display:grid;
+    place-items:center;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    color:#25d477;
 
     background:
-        rgba(36,212,122,.1);
+        rgba(37,212,119,.09);
 
     border:
-        1px solid rgba(36,212,122,.3);
-
-    color: var(--green);
-
-    display: grid;
-
-    place-items: center;
-
-    font-size: 13px;
-
-    flex-shrink: 0;
+        1px solid rgba(37,212,119,.25);
 }
 
 /* =========================
-   DARK PANEL
+   LARGE FEATURE
 ========================= */
 
-.dark-panel {
-    padding: 100px 0;
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255,157,0,.10),
-            transparent 50%
-        );
-
-    border-top:
-        1px solid rgba(255,255,255,.05);
-
-    border-bottom:
-        1px solid rgba(255,255,255,.05);
+.full-image-section{
+    padding:120px 0;
 }
 
-/* =========================
-   GALLERY
-========================= */
+.full-image{
+    position:relative;
 
-.gallery {
-    display: grid;
+    border-radius:28px;
 
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-.gallery-item {
-    position: relative;
-
-    border-radius: 25px;
-
-    overflow: hidden;
+    overflow:hidden;
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid rgba(255,152,0,.20);
 
-    background: #0d0f12;
+    background:#080808;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.35);
-
-    transition: .35s;
+        0 30px 90px rgba(0,0,0,.45);
 }
 
-.gallery-item:hover {
-    transform:
-        translateY(-8px) scale(1.01);
-
-    border-color:
-        rgba(255,157,0,.4);
-}
-
-.gallery-item img {
-    width: 100%;
-
-    height: 560px;
-
-    object-fit: cover;
-
-    object-position: top;
-}
-
-.gallery-caption {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    padding:
-        35px 22px 20px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0,0,0,.92)
-        );
-}
-
-.gallery-caption h3 {
-    font-size: 20px;
-}
-
-.gallery-caption p {
-    color: #bbb;
-
-    font-size: 13px;
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stats-section {
-    padding: 120px 0;
-}
-
-.stats-box {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    border:
-        1px solid rgba(255,157,0,.22);
-
-    border-radius: 25px;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,157,0,.06),
-            rgba(255,255,255,.02)
-        );
-}
-
-.stat {
-    text-align: center;
-
-    padding: 40px 20px;
-
-    border-right:
-        1px solid rgba(255,255,255,.08);
-}
-
-.stat:last-child {
-    border-right: none;
-}
-
-.stat strong {
-    display: block;
-
-    font-size: 40px;
-
-    color: var(--orange);
-
-    font-weight: 900;
-}
-
-.stat span {
-    color: var(--muted);
-
-    font-size: 14px;
+.full-image img{
+    width:100%;
 }
 
 /* =========================
    CTA
 ========================= */
 
-.cta {
-    padding: 110px 20px;
+.cta{
+    padding:130px 20px;
 
-    text-align: center;
+    text-align:center;
 
-    position: relative;
-
-    overflow: hidden;
+    overflow:hidden;
 }
 
-.cta::before {
-    content: "";
+.cta::before{
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    width: 600px;
-    height: 300px;
+    width:650px;
+    height:350px;
 
-    left: 50%;
-    top: 30%;
+    left:50%;
+    top:50%;
 
-    transform:
-        translateX(-50%);
+    transform:translate(-50%,-50%);
 
     background:
         radial-gradient(
             ellipse,
-            rgba(255,157,0,.18),
+            rgba(255,152,0,.16),
             transparent 70%
         );
-
-    pointer-events: none;
 }
 
-.cta-content {
-    position: relative;
+.cta-content{
+    position:relative;
 
-    max-width: 750px;
+    max-width:800px;
 
-    margin: auto;
+    margin:auto;
 }
 
-.cta h2 {
+.cta h2{
     font-size:
-        clamp(40px, 6vw, 65px);
+        clamp(45px,6vw,72px);
 
-    line-height: 1;
+    line-height:1;
 
-    letter-spacing: -2px;
+    letter-spacing:-3px;
 
-    margin-bottom: 20px;
+    margin-bottom:20px;
 }
 
-.cta h2 span {
-    color: var(--orange);
+.cta h2 span{
+    color:var(--orange);
 }
 
-.cta p {
-    color: var(--muted);
+.cta p{
+    color:var(--gray);
 
-    font-size: 18px;
+    font-size:18px;
 
-    margin-bottom: 32px;
+    margin-bottom:30px;
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-footer {
+footer{
+    padding:50px 0 25px;
+
+    background:#030303;
+
     border-top:
         1px solid rgba(255,255,255,.08);
-
-    padding:
-        55px 0 30px;
-
-    background: #030405;
 }
 
-.footer-inner {
-    width: min(
+.footer-container{
+    width:min(
         calc(100% - 40px),
-        var(--max)
+        var(--max-width)
     );
 
-    margin: auto;
+    margin:auto;
 
-    display: flex;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 30px;
+    gap:30px;
 }
 
-.footer-brand {
-    color: #aaa;
-
-    font-size: 14px;
+.footer-brand{
+    color:#888;
+    font-size:13px;
 }
 
-.footer-brand strong {
-    color: white;
-
-    font-size: 17px;
+.footer-brand strong{
+    color:white;
+    font-size:19px;
 }
 
-.footer-links {
-    display: flex;
+.footer-links{
+    display:flex;
+    gap:28px;
 
-    gap: 25px;
+    color:#999;
 
-    color: #999;
-
-    font-size: 14px;
+    font-size:14px;
 }
 
-.footer-links a:hover {
-    color: var(--orange);
+.footer-links a:hover{
+    color:var(--orange);
 }
 
-.copyright {
-    text-align: center;
+.copyright{
+    text-align:center;
 
-    color: #555;
+    margin-top:35px;
 
-    font-size: 12px;
+    color:#555;
 
-    margin-top: 40px;
-}
-
-/* =========================
-   REVEAL
-========================= */
-
-.reveal {
-    opacity: 0;
-
-    transform:
-        translateY(25px);
-
-    transition:
-        opacity .7s ease,
-        transform .7s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-
-    transform:
-        translateY(0);
+    font-size:12px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 900px) {
+@media(max-width:900px){
 
-    .nav-links {
-        gap: 17px;
+    .hero{
+        min-height:auto;
     }
 
-    .nav-links a {
-        font-size: 12px;
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
     }
 
-    .hero {
-        padding-top: 120px;
+    .hero-content{
+        order:2;
     }
 
-    .hero-inner {
-        grid-template-columns: 1fr;
-
-        text-align: center;
+    .hero-image{
+        order:1;
     }
 
-    .hero-description {
-        margin-left: auto;
-        margin-right: auto;
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
     }
 
-    .hero-buttons {
-        justify-content: center;
+    .hero-buttons{
+        justify-content:center;
     }
 
-    .hero-image {
-        order: -1;
-    }
-
-    .hero-image img {
-        width: 90%;
-    }
-
-    .feature-grid {
-        grid-template-columns:
-            1fr 1fr;
+    .feature-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .showcase,
-    .showcase.reverse {
-        grid-template-columns: 1fr;
-
-        direction: ltr;
-
-        text-align: center;
+    .showcase.reverse{
+        grid-template-columns:1fr;
+        direction:ltr;
+        text-align:center;
     }
 
-    .showcase-content {
-        margin: auto;
+    .showcase-content{
+        margin:auto;
     }
 
-    .check-list {
-        text-align: left;
-
-        max-width: 390px;
-
-        margin: auto;
-    }
-
-    .gallery {
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .gallery-item img {
-        height: 500px;
-    }
-
-    .stats-box {
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .stat:nth-child(2) {
-        border-right: none;
-    }
-
-    .stat:nth-child(-n+2) {
-        border-bottom:
-            1px solid rgba(255,255,255,.08);
-    }
-
-    .footer-inner {
-        flex-direction: column;
-
-        text-align: center;
+    .check-list{
+        text-align:left;
+        max-width:420px;
+        margin:auto;
     }
 }
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    .navbar {
-        height: 68px;
+    .navbar{
+        height:68px;
     }
 
-    .nav-inner {
-        width:
-            calc(100% - 25px);
+    .nav-container{
+        width:calc(100% - 24px);
     }
 
-    .logo {
-        font-size: 17px;
+    .logo{
+        font-size:17px;
     }
 
-    .logo-mark {
-        width: 36px;
-        height: 36px;
+    .logo-icon{
+        width:36px;
+        height:36px;
     }
 
-    .nav-links {
-        gap: 13px;
+    .nav-links{
+        gap:13px;
+        font-size:11px;
     }
 
-    .nav-links a {
-        font-size: 11px;
+    .container{
+        width:calc(100% - 28px);
     }
 
-    .hero {
-        min-height: auto;
-
-        padding-top: 105px;
-
-        padding-bottom: 60px;
+    .hero{
+        padding:
+            110px 0 70px;
     }
 
-    .hero h1 {
-        font-size: 48px;
-
-        letter-spacing: -2.5px;
+    .hero h1{
+        font-size:48px;
+        letter-spacing:-2.5px;
     }
 
-    .hero-description {
-        font-size: 17px;
+    .hero-description{
+        font-size:17px;
     }
 
-    .container {
-        width:
-            calc(100% - 28px);
+    .feature-grid{
+        grid-template-columns:1fr;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr;
+    .section{
+        padding:75px 0;
     }
 
-    .section {
-        padding: 75px 0;
+    .section-header{
+        margin-bottom:45px;
     }
 
-    .section-title {
-        font-size: 38px;
+    .section-header h2{
+        font-size:39px;
     }
 
-    .showcase {
-        margin-bottom: 85px;
-
-        gap: 40px;
+    .showcase{
+        gap:40px;
+        margin-bottom:90px;
     }
 
-    .showcase h2 {
-        font-size: 34px;
+    .showcase-content h2{
+        font-size:34px;
     }
 
-    .showcase p {
-        font-size: 16px;
+    .showcase-content p{
+        font-size:16px;
     }
 
-    .gallery {
-        grid-template-columns: 1fr;
+    .full-image-section{
+        padding:75px 0;
     }
 
-    .gallery-item img {
-        height: auto;
-
-        max-height: 700px;
+    .cta{
+        padding:85px 15px;
     }
 
-    .stats-box {
-        grid-template-columns: 1fr;
+    .cta h2{
+        font-size:44px;
     }
 
-    .stat {
-        border-right: none !important;
-
-        border-bottom:
-            1px solid rgba(255,255,255,.08);
+    .footer-container{
+        flex-direction:column;
+        text-align:center;
     }
 
-    .stat:last-child {
-        border-bottom: none;
-    }
-
-    .cta {
-        padding: 80px 15px;
-    }
-
-    .cta h2 {
-        font-size: 42px;
-    }
-
-    .footer-links {
-        flex-wrap: wrap;
-
-        justify-content: center;
+    .footer-links{
+        flex-wrap:wrap;
+        justify-content:center;
     }
 }
-
 </style>
 </head>
 
 <body>
-
 
 <!-- =========================
      NAVBAR
@@ -1265,26 +1005,23 @@ footer {
 
 <nav class="navbar">
 
-    <div class="nav-inner">
+    <div class="nav-container">
 
         <a href="index.html" class="logo">
 
-            <div class="logo-mark">
-                <span>⏰</span>
+            <div class="logo-icon">
+                ⏰
             </div>
 
-            <div class="logo-text">
+            <div>
                 Alarm<span>ify</span>
             </div>
 
         </a>
 
-
-        <!-- EXACTLY THREE NAVBAR OPTIONS -->
-
         <div class="nav-links">
 
-            <a href="index.html">
+            <a href="index.html" class="active">
                 Home
             </a>
 
@@ -1309,56 +1046,56 @@ footer {
 
 <section class="hero">
 
-    <div class="hero-inner">
+    <div class="container">
 
-        <div class="hero-content reveal">
+        <div class="hero-grid">
 
-            <div class="eyebrow">
-                ✦ SMART ALARM CLOCK
+            <div class="hero-content">
+
+                <div class="badge">
+                    ✦ SMART ALARM CLOCK
+                </div>
+
+                <h1>
+                    Wake Up<br>
+                    The <span>Right Way.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Alarmify is a smart alarm clock designed to
+                    help you wake up, complete your challenge,
+                    and start your day on track.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#features"
+                        class="btn btn-primary"
+                    >
+                        Explore Features
+                    </a>
+
+                    <a
+                        href="#missions"
+                        class="btn btn-secondary"
+                    >
+                        Discover Alarmify →
+                    </a>
+
+                </div>
+
             </div>
 
-            <h1>
-                Wake Up<br>
-                The <span>Right Way.</span>
-            </h1>
 
-            <p class="hero-description">
+            <div class="hero-image">
 
-                Powerful. Reliable. Mission based.
-
-                <strong>Alarmify</strong>
-                helps you wake up, complete your morning challenge,
-                and start your day with purpose.
-
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="#features"
-                    class="primary-btn"
+                <img
+                    src="front(2).png"
+                    alt="Alarmify Smart Alarm Clock"
                 >
-                    ⏰ Explore Alarmify
-                </a>
-
-                <a
-                    href="#missions"
-                    class="secondary-btn"
-                >
-                    Discover Features →
-                </a>
 
             </div>
-
-        </div>
-
-
-        <div class="hero-image reveal">
-
-            <img
-                src="front.png"
-                alt="Alarmify Smart Alarm Clock"
-            >
 
         </div>
 
@@ -1368,16 +1105,16 @@ footer {
 
 
 <!-- =========================
-     FEATURES
+     FEATURE STRIP
 ========================= -->
 
-<section class="features" id="features">
+<section class="feature-strip" id="features">
 
     <div class="container">
 
         <div class="feature-grid">
 
-            <div class="feature-card reveal">
+            <div class="feature-card">
 
                 <div class="feature-icon">
                     🛡
@@ -1388,13 +1125,13 @@ footer {
                 </h3>
 
                 <p>
-                    Keep active alarms protected.
+                    Protection while an alarm is active.
                 </p>
 
             </div>
 
 
-            <div class="feature-card reveal">
+            <div class="feature-card">
 
                 <div class="feature-icon">
                     🔊
@@ -1405,30 +1142,30 @@ footer {
                 </h3>
 
                 <p>
-                    Keep your alarm loud until the task is complete.
+                    Keep the alarm volume from being lowered.
                 </p>
 
             </div>
 
 
-            <div class="feature-card reveal">
+            <div class="feature-card">
 
                 <div class="feature-icon">
                     ✓
                 </div>
 
                 <h3>
-                    Mission Based
+                    Wake-Up Missions
                 </h3>
 
                 <p>
-                    Complete challenges before dismissing alarms.
+                    Complete a challenge to dismiss the alarm.
                 </p>
 
             </div>
 
 
-            <div class="feature-card reveal">
+            <div class="feature-card">
 
                 <div class="feature-icon">
                     ☀
@@ -1439,7 +1176,7 @@ footer {
                 </h3>
 
                 <p>
-                    Choose the interface that's right for you.
+                    Choose the interface you prefer.
                 </p>
 
             </div>
@@ -1459,20 +1196,19 @@ footer {
 
     <div class="container">
 
-        <div class="section-header reveal">
+        <div class="section-header">
 
             <div class="section-label">
                 WAKE-UP MISSIONS
             </div>
 
-            <h2 class="section-title">
+            <h2>
                 Don't Just Wake Up.<br>
                 <span>Prove You're Awake.</span>
             </h2>
 
-            <p class="section-subtitle">
-                Turn off your alarm by completing a challenge.
-                Choose the mission that gets you moving.
+            <p>
+                Complete a mission before turning off the alarm.
             </p>
 
         </div>
@@ -1480,19 +1216,19 @@ footer {
 
         <div class="showcase">
 
-            <div class="showcase-image reveal">
+            <div class="showcase-image">
 
                 <img
-                    src="photo 6.png"
+                    src="Wake up mission.png"
                     alt="Alarmify Wake-Up Missions"
                 >
 
             </div>
 
 
-            <div class="showcase-content reveal">
+            <div class="showcase-content">
 
-                <div class="showcase-number">
+                <div class="step">
                     01
                 </div>
 
@@ -1501,9 +1237,9 @@ footer {
                 </h2>
 
                 <p>
-                    Alarmify makes waking up more than just pressing
-                    a button. Complete your selected mission before
-                    the alarm can be dismissed.
+                    Alarmify makes waking up more active by
+                    requiring you to complete a selected
+                    challenge before dismissing the alarm.
                 </p>
 
                 <ul class="check-list">
@@ -1550,39 +1286,39 @@ footer {
 
 
 <!-- =========================
-     PROTECTION
+     VOLUME LOCK
 ========================= -->
 
-<section class="dark-panel">
+<section class="section section-dark">
 
     <div class="container">
 
         <div class="showcase reverse">
 
-            <div class="showcase-image reveal">
+            <div class="showcase-image">
 
                 <img
-                    src="photo 5.png"
-                    alt="Alarmify Volume Lock and Anti-Uninstall"
+                    src="volume locked.png"
+                    alt="Alarmify Volume Lock"
                 >
 
             </div>
 
 
-            <div class="showcase-content reveal">
+            <div class="showcase-content">
 
-                <div class="showcase-number">
+                <div class="step">
                     02
                 </div>
 
                 <h2>
-                    Stay Awake.<br>
-                    Stay <span>Protected.</span>
+                    Volume <span>Locked.</span>
                 </h2>
 
                 <p>
-                    Alarmify is designed to help prevent accidental
-                    dismissal and keep your wake-up routine on track.
+                    When Volume Lock is enabled, Alarmify helps
+                    prevent the alarm volume from being decreased
+                    during the active alarm.
                 </p>
 
                 <ul class="check-list">
@@ -1594,17 +1330,12 @@ footer {
 
                     <li>
                         <span class="check">✓</span>
-                        Anti-Uninstall Protection
+                        Alarm stays audible
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Complete Task to Dismiss
-                    </li>
-
-                    <li>
-                        <span class="check">✓</span>
-                        Alarm Protection
+                        Complete the task or wake up
                     </li>
 
                 </ul>
@@ -1628,140 +1359,52 @@ footer {
 
         <div class="showcase">
 
-            <div class="showcase-image reveal">
+            <div class="showcase-image">
 
                 <img
-                    src="photo 4.png"
+                    src="eye blink challenge.png"
                     alt="Alarmify Eye Blink Challenge"
                 >
 
             </div>
 
 
-            <div class="showcase-content reveal">
+            <div class="showcase-content">
 
-                <div class="showcase-number">
+                <div class="step">
                     03
                 </div>
 
                 <h2>
-                    Eye Blink <span>Challenge</span>
+                    Eye Blink <span>Challenge.</span>
                 </h2>
 
                 <p>
-                    Use the camera-based eye blink challenge to
-                    complete your wake-up mission before dismissing
-                    the alarm.
+                    Use the camera-based Eye Blink Challenge
+                    to complete the required number of blinks
+                    before dismissing your alarm.
                 </p>
 
                 <ul class="check-list">
 
                     <li>
                         <span class="check">✓</span>
-                        Eye Blink Detection
+                        Real eye-blink detection
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Adjustable Blink Count
+                        Customizable blink count
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Stay in Frame
+                        Stay inside the camera frame
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Complete the Challenge
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DARK / LIGHT
-========================= -->
-
-<section class="dark-panel">
-
-    <div class="container">
-
-        <div class="section-header reveal">
-
-            <div class="section-label">
-                YOUR STYLE
-            </div>
-
-            <h2 class="section-title">
-                One App.<br>
-                <span>Two Themes.</span>
-            </h2>
-
-            <p class="section-subtitle">
-                Switch between Dark and Light UI for a comfortable
-                experience day and night.
-            </p>
-
-        </div>
-
-
-        <div class="showcase">
-
-            <div class="showcase-image reveal">
-
-                <img
-                    src="photo 3.png"
-                    alt="Alarmify Dark and Light UI"
-                >
-
-            </div>
-
-
-            <div class="showcase-content reveal">
-
-                <div class="showcase-number">
-                    04
-                </div>
-
-                <h2>
-                    Dark & <span>Light UI</span>
-                </h2>
-
-                <p>
-                    A clean, modern interface designed to look great
-                    whether you're setting an alarm during the day or
-                    checking your schedule at night.
-                </p>
-
-                <ul class="check-list">
-
-                    <li>
-                        <span class="check">✓</span>
-                        Dark Mode
-                    </li>
-
-                    <li>
-                        <span class="check">✓</span>
-                        Light Mode
-                    </li>
-
-                    <li>
-                        <span class="check">✓</span>
-                        Easy Theme Switching
-                    </li>
-
-                    <li>
-                        <span class="check">✓</span>
-                        Modern Interface
+                        Complete the challenge to stop the alarm
                     </li>
 
                 </ul>
@@ -1779,63 +1422,63 @@ footer {
      STATISTICS
 ========================= -->
 
-<section class="section">
+<section class="section section-dark">
 
     <div class="container">
 
         <div class="showcase reverse">
 
-            <div class="showcase-image reveal">
+            <div class="showcase-image">
 
                 <img
-                    src="photo2.png"
+                    src="detailed statistics.png"
                     alt="Alarmify Detailed Statistics"
                 >
 
             </div>
 
 
-            <div class="showcase-content reveal">
+            <div class="showcase-content">
 
-                <div class="showcase-number">
-                    05
+                <div class="step">
+                    04
                 </div>
 
                 <h2>
-                    Track Your <span>Progress.</span>
+                    Detailed <span>Statistics.</span>
                 </h2>
 
                 <p>
-                    See how consistently you're waking up and completing
-                    your alarms. Use your statistics to build a stronger
-                    morning routine.
+                    Track your wake-up performance and see
+                    how consistently you're completing your
+                    alarms.
                 </p>
 
                 <ul class="check-list">
 
                     <li>
                         <span class="check">✓</span>
-                        Wake Success Rate
+                        Current wake streak
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Completed Alarms
+                        Completed alarms
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Average Dismiss Time
+                        Average dismiss time
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        Snooze Tracking
+                        Snooze tracking
                     </li>
 
                     <li>
                         <span class="check">✓</span>
-                        7-Day Wake Consistency
+                        7-day wake consistency
                     </li>
 
                 </ul>
@@ -1850,97 +1493,105 @@ footer {
 
 
 <!-- =========================
-     SCREENSHOTS
+     DARK & LIGHT
 ========================= -->
 
-<section class="dark-panel">
+<section class="section">
 
     <div class="container">
 
-        <div class="section-header reveal">
+        <div class="showcase">
 
-            <div class="section-label">
-                INSIDE ALARMIFY
+            <div class="showcase-image">
+
+                <img
+                    src="Dark and light theme.png"
+                    alt="Alarmify Dark and Light UI"
+                >
+
             </div>
 
-            <h2 class="section-title">
-                Built For Better<br>
-                <span>Mornings.</span>
+
+            <div class="showcase-content">
+
+                <div class="step">
+                    05
+                </div>
+
+                <h2>
+                    Dark & <span>Light UI.</span>
+                </h2>
+
+                <p>
+                    Choose between a dark interface and a
+                    bright light interface while keeping the
+                    same clean Alarmify experience.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Dark UI
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Light UI
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Easy theme switching
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Consistent experience
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ANTI UNINSTALL
+========================= -->
+
+<section class="section section-dark">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                WAKE PROTECTION
+            </div>
+
+            <h2>
+                Anti-Uninstall <span>Protection.</span>
             </h2>
 
-            <p class="section-subtitle">
-                Explore the Alarmify experience.
+            <p>
+                Keep your active alarm protected until you wake up.
             </p>
 
         </div>
 
 
-        <div class="gallery">
+        <div class="full-image">
 
-            <div class="gallery-item reveal">
-
-                <img
-                    src="photo1.png"
-                    alt="Alarmify Smart Alarm Interface"
-                >
-
-                <div class="gallery-caption">
-
-                    <h3>
-                        Smart Alarms
-                    </h3>
-
-                    <p>
-                        Simple and powerful alarm management.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <img
-                    src="photo 5.png"
-                    alt="Alarmify Protection Features"
-                >
-
-                <div class="gallery-caption">
-
-                    <h3>
-                        Wake Protection
-                    </h3>
-
-                    <p>
-                        Volume Lock and Anti-Uninstall features.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <img
-                    src="photo 6.png"
-                    alt="Alarmify Wake-Up Missions"
-                >
-
-                <div class="gallery-caption">
-
-                    <h3>
-                        Wake-Up Missions
-                    </h3>
-
-                    <p>
-                        Challenges designed to get you moving.
-                    </p>
-
-                </div>
-
-            </div>
+            <img
+                src="Anti uninstall protection.png"
+                alt="Alarmify Anti-Uninstall Protection"
+            >
 
         </div>
 
@@ -1950,69 +1601,32 @@ footer {
 
 
 <!-- =========================
-     STATS
-========================= -->
-
-<section class="stats-section">
-
-    <div class="container">
-
-        <div class="stats-box reveal">
-
-            <div class="stat">
-                <strong>6+</strong>
-                <span>Wake-Up Missions</span>
-            </div>
-
-            <div class="stat">
-                <strong>2</strong>
-                <span>Beautiful Themes</span>
-            </div>
-
-            <div class="stat">
-                <strong>24/7</strong>
-                <span>Alarm Ready</span>
-            </div>
-
-            <div class="stat">
-                <strong>1</strong>
-                <span>Goal — Wake Up</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CTA
+     FINAL CTA
 ========================= -->
 
 <section class="cta">
 
-    <div class="cta-content reveal">
+    <div class="cta-content">
 
-        <div class="eyebrow">
-            ⏰ START YOUR MORNING DIFFERENTLY
+        <div class="badge">
+            ⏰ ALARMIFY
         </div>
 
         <h2>
-            Wake Up<br>
-            The <span>Right Way.</span>
+            Wake Up.<br>
+            Stay <span>On Track.</span>
         </h2>
 
         <p>
-            Set your alarm. Complete your mission.
-            Start your day stronger.
+            Set your alarm, complete your mission,
+            and start your day right.
         </p>
 
         <a
             href="mailto:rkwa.technologies@gmail.com"
-            class="primary-btn"
+            class="btn btn-primary"
         >
-            ✉ Contact Us
+            Contact Alarmify
         </a>
 
     </div>
@@ -2026,7 +1640,7 @@ footer {
 
 <footer>
 
-    <div class="footer-inner">
+    <div class="footer-container">
 
         <div class="footer-brand">
 
@@ -2040,8 +1654,6 @@ footer {
 
         </div>
 
-
-        <!-- THREE FOOTER OPTIONS -->
 
         <div class="footer-links">
 
@@ -2069,76 +1681,6 @@ footer {
     </div>
 
 </footer>
-
-
-<script>
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const observer =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target
-                        .classList
-                        .add("visible");
-
-                    observer
-                        .unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-
-/* =========================
-   NAVBAR SHADOW
-========================= */
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        const nav =
-            document.querySelector(".navbar");
-
-        if (window.scrollY > 20) {
-
-            nav.style.boxShadow =
-                "0 10px 40px rgba(0,0,0,.30)";
-
-        } else {
-
-            nav.style.boxShadow =
-                "none";
-
-        }
-
-    }
-);
-
-</script>
 
 </body>
 </html>
