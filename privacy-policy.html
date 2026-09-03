@@ -14,8 +14,12 @@
             --surface: #ffffff;
             --text: #17181c;
             --secondary: #686b75;
-            --primary: #6c4df6;
-            --primary-light: #f1edff;
+
+            /* ORANGE THEME */
+            --primary: #ff7a00;
+            --primary-dark: #f05f00;
+            --primary-light: #fff1e6;
+
             --border: #e7e7ee;
             --success: #16835b;
         }
@@ -89,8 +93,14 @@
             justify-content: center;
             overflow: hidden;
             border-radius: 13px;
-            background: linear-gradient(135deg, #6c4df6, #927aff);
-            box-shadow: 0 8px 20px rgba(108, 77, 246, 0.22);
+
+            background: linear-gradient(
+                135deg,
+                #ff7a00,
+                #ff9d3d
+            );
+
+            box-shadow: 0 8px 20px rgba(255, 122, 0, 0.22);
         }
 
         .brand-icon img {
@@ -125,10 +135,11 @@
         .hero {
             text-align: center;
             padding: 90px 24px 80px;
+
             background:
                 radial-gradient(
                     circle at 50% 0%,
-                    rgba(108, 77, 246, 0.15),
+                    rgba(255, 122, 0, 0.16),
                     transparent 55%
                 );
         }
@@ -139,8 +150,10 @@
             gap: 7px;
             padding: 8px 15px;
             border-radius: 50px;
+
             background: var(--primary-light);
             color: var(--primary);
+
             font-size: 13px;
             font-weight: 700;
             margin-bottom: 22px;
@@ -186,7 +199,9 @@
             border: 1px solid var(--border);
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 25px 70px rgba(25, 25, 50, 0.08);
+
+            box-shadow:
+                0 25px 70px rgba(25, 25, 50, 0.08);
         }
 
         .content {
@@ -201,8 +216,10 @@
             padding: 26px 28px;
             margin-bottom: 48px;
             border-radius: 18px;
+
             background: var(--primary-light);
-            border: 1px solid rgba(108, 77, 246, 0.10);
+
+            border: 1px solid rgba(255, 122, 0, 0.12);
         }
 
         .intro p {
@@ -295,7 +312,10 @@
             background: #fff;
             border: 1px solid var(--border);
             border-radius: 18px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .card:hover {
@@ -306,13 +326,17 @@
         .card-icon {
             width: 43px;
             height: 43px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             margin-bottom: 14px;
             border-radius: 12px;
+
             background: var(--primary-light);
             color: var(--primary);
+
             font-size: 19px;
         }
 
@@ -335,6 +359,7 @@
             margin: 22px 0;
             padding: 21px 23px;
             border-radius: 15px;
+
             background: #f4fbf8;
             border: 1px solid #d8f0e6;
             border-left: 4px solid var(--success);
@@ -356,8 +381,15 @@
             margin-top: 22px;
             padding: 28px;
             border-radius: 20px;
-            background: linear-gradient(135deg, #f2efff, #f8f7ff);
-            border: 1px solid #e3ddff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3e8,
+                    #fff9f4
+                );
+
+            border: 1px solid #ffe0c2;
         }
 
         .contact h3 {
@@ -393,6 +425,7 @@
             max-width: 1000px;
             margin: auto;
             padding: 30px 24px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
