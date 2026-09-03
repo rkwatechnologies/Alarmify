@@ -36,7 +36,6 @@
                 BlinkMacSystemFont,
                 "Segoe UI",
                 Roboto,
-                Helvetica,
                 Arial,
                 sans-serif;
             background: var(--background);
@@ -44,30 +43,36 @@
             line-height: 1.7;
         }
 
-        /* Navigation */
+        /* =========================
+           NAVIGATION
+        ========================== */
+
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
         }
 
         .nav {
+            width: 100%;
             max-width: 1100px;
             margin: auto;
-            padding: 16px 24px;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 24px;
         }
 
         .brand {
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0;
             color: var(--text);
             text-decoration: none;
             font-size: 17px;
@@ -75,14 +80,31 @@
         }
 
         .brand-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            flex: 0 0 44px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             border-radius: 13px;
             background: linear-gradient(135deg, #6c4df6, #927aff);
-            color: white;
-            font-size: 21px;
             box-shadow: 0 8px 20px rgba(108, 77, 246, 0.22);
+        }
+
+        .brand-icon img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        .brand > span:last-child {
+            white-space: nowrap;
         }
 
         .nav-link {
@@ -96,7 +118,10 @@
             color: var(--primary);
         }
 
-        /* Hero */
+        /* =========================
+           HERO
+        ========================== */
+
         .hero {
             text-align: center;
             padding: 90px 24px 80px;
@@ -145,8 +170,12 @@
             font-size: 13px;
         }
 
-        /* Main */
+        /* =========================
+           MAIN POLICY
+        ========================== */
+
         .container {
+            width: 100%;
             max-width: 1000px;
             margin: -20px auto 80px;
             padding: 0 24px;
@@ -164,7 +193,10 @@
             padding: 55px;
         }
 
-        /* Introduction */
+        /* =========================
+           INTRO
+        ========================== */
+
         .intro {
             padding: 26px 28px;
             margin-bottom: 48px;
@@ -175,6 +207,7 @@
 
         .intro p {
             color: #4f4b61;
+            margin-bottom: 14px;
         }
 
         .intro p:last-child {
@@ -185,7 +218,10 @@
             color: var(--primary);
         }
 
-        /* Sections */
+        /* =========================
+           SECTIONS
+        ========================== */
+
         .section {
             margin-bottom: 42px;
             padding-bottom: 42px;
@@ -225,7 +261,10 @@
             color: #50535c;
         }
 
-        /* Lists */
+        /* =========================
+           LISTS
+        ========================== */
+
         ul {
             margin: 15px 0 12px 22px;
         }
@@ -240,7 +279,10 @@
             color: var(--primary);
         }
 
-        /* Information Cards */
+        /* =========================
+           INFORMATION CARDS
+        ========================== */
+
         .cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -285,7 +327,10 @@
             color: var(--secondary);
         }
 
-        /* Highlight */
+        /* =========================
+           HIGHLIGHT
+        ========================== */
+
         .highlight {
             margin: 22px 0;
             padding: 21px 23px;
@@ -303,7 +348,10 @@
             margin: 8px 0 0;
         }
 
-        /* Contact */
+        /* =========================
+           CONTACT
+        ========================== */
+
         .contact {
             margin-top: 22px;
             padding: 28px;
@@ -331,13 +379,17 @@
             text-decoration: underline;
         }
 
-        /* Footer */
+        /* =========================
+           FOOTER
+        ========================== */
+
         footer {
             background: #ffffff;
             border-top: 1px solid var(--border);
         }
 
         .footer {
+            width: 100%;
             max-width: 1000px;
             margin: auto;
             padding: 30px 24px;
@@ -357,21 +409,37 @@
             font-size: 13px;
         }
 
-        /* Mobile */
+        /* =========================
+           MOBILE
+        ========================== */
+
         @media (max-width: 700px) {
 
             .nav {
-                padding: 14px 18px;
+                padding: 12px 18px;
+                gap: 14px;
             }
 
             .brand {
                 font-size: 15px;
+                gap: 9px;
             }
 
             .brand-icon {
                 width: 37px;
                 height: 37px;
-                font-size: 18px;
+                min-width: 37px;
+                flex-basis: 37px;
+                border-radius: 11px;
+            }
+
+            .brand > span:last-child {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .nav-link {
+                font-size: 13px;
             }
 
             .hero {
@@ -432,9 +500,16 @@
     <nav class="nav">
 
         <a href="#" class="brand">
-<span class="brand-icon">
-    <img src="app-icon.png" alt="Alarm – Wake You Up App Icon">
-</span>            <span>Alarm – Wake You Up</span>
+
+            <span class="brand-icon">
+                <img
+                    src="app-icon.png"
+                    alt="Alarm – Wake You Up App Icon"
+                >
+            </span>
+
+            <span>Alarm – Wake You Up</span>
+
         </a>
 
         <a href="#contact" class="nav-link">
@@ -473,6 +548,8 @@
 
         <div class="content">
 
+            <!-- INTRODUCTION -->
+
             <div class="intro">
 
                 <p>
@@ -489,6 +566,8 @@
 
             </div>
 
+
+            <!-- 01 -->
 
             <section class="section">
 
@@ -579,6 +658,8 @@
             </section>
 
 
+            <!-- 02 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -608,6 +689,8 @@
 
             </section>
 
+
+            <!-- 03 -->
 
             <section class="section">
 
@@ -647,6 +730,8 @@
             </section>
 
 
+            <!-- 04 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -680,6 +765,8 @@
             </section>
 
 
+            <!-- 05 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -710,6 +797,8 @@
             </section>
 
 
+            <!-- 06 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -738,6 +827,8 @@
 
             </section>
 
+
+            <!-- 07 -->
 
             <section class="section">
 
@@ -768,6 +859,8 @@
             </section>
 
 
+            <!-- 08 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -791,6 +884,8 @@
 
             </section>
 
+
+            <!-- 09 -->
 
             <section class="section">
 
@@ -816,6 +911,8 @@
 
             </section>
 
+
+            <!-- 10 -->
 
             <section class="section">
 
@@ -848,6 +945,8 @@
             </section>
 
 
+            <!-- 11 -->
+
             <section class="section">
 
                 <div class="section-number">
@@ -871,6 +970,8 @@
 
             </section>
 
+
+            <!-- 12 -->
 
             <section class="section" id="contact">
 
@@ -931,4 +1032,3 @@
 
 </body>
 </html>
-```
