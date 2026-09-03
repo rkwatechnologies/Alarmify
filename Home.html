@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alarmify – Smart Alarm Clock</title>
+
+<meta name="description"
+content="Alarmify – Smart Alarm Clock. Wake up the right way with mission-based alarms, volume lock, anti-uninstall protection, and more.">
+
+<meta name="theme-color" content="#ff9d00">
+
+<style>
+
+:root {
+    --orange: #ff9d00;
+    --orange-light: #ffb52e;
+    --bg: #050608;
+    --card: #101216;
+    --card2: #15181d;
+    --white: #ffffff;
+    --text: #f5f5f5;
+    --muted: #a9adb6;
+    --green: #24d47a;
+    --border: rgba(255,255,255,0.10);
+    --max: 1180px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 80% 5%,
+            rgba(255,157,0,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 40%,
+            rgba(255,157,0,.06),
+            transparent 25%
+        ),
+        var(--bg);
+
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    height: 76px;
+
+    background: rgba(5,6,8,.80);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
+
+    transition: .3s;
+}
+
+.nav-inner {
+    width: min(
+        calc(100% - 40px),
+        var(--max)
+    );
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb21c,
+            #ff6d00
+        );
+
+    box-shadow:
+        0 0 30px rgba(255,157,0,.25);
+}
+
+.logo-mark span {
+    font-size: 23px;
+}
+
+.logo-text span {
+    color: var(--orange);
+}
+
+/* NAV LINKS */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    color: #c9cbd0;
+
+    font-size: 14px;
+
+    font-weight: 650;
+}
+
+.nav-links a {
+    position: relative;
+
+    transition: .25s;
+}
+
+.nav-links a:hover {
+    color: var(--orange);
+}
+
+.nav-links a:not(.nav-button)::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--orange);
+
+    transition: .25s;
+}
+
+.nav-links a:not(.nav-button):hover::after {
+    width: 100%;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 850px;
+
+    padding-top: 150px;
+
+    padding-bottom: 100px;
+
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    right: -250px;
+    top: 70px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,157,0,.16),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.hero-inner {
+    width: min(
+        calc(100% - 40px),
+        var(--max)
+    );
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+}
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 15px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,157,0,.09);
+
+    border:
+        1px solid rgba(255,157,0,.25);
+
+    color: var(--orange);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size:
+        clamp(50px, 7vw, 86px);
+
+    line-height: .98;
+
+    letter-spacing: -4px;
+
+    font-weight: 900;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--orange);
+
+    text-shadow:
+        0 0 40px rgba(255,157,0,.18);
+}
+
+.hero-description {
+    max-width: 580px;
+
+    font-size: 21px;
+
+    color: var(--muted);
+
+    margin-bottom: 35px;
+}
+
+.hero-description strong {
+    color: white;
+}
+
+.hero-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px 24px;
+
+    background: var(--orange);
+
+    color: #0a0a0a;
+
+    border-radius: 13px;
+
+    font-weight: 850;
+
+    box-shadow:
+        0 15px 40px rgba(255,157,0,.18);
+
+    transition: .25s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 20px 50px rgba(255,157,0,.28);
+}
+
+.secondary-btn {
+    padding: 14px 22px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    color: #ddd;
+
+    background:
+        rgba(255,255,255,.035);
+
+    transition: .25s;
+}
+
+.secondary-btn:hover {
+    border-color:
+        rgba(255,157,0,.5);
+
+    color: var(--orange);
+}
+
+/* HERO IMAGE */
+
+.hero-image {
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.hero-image img {
+    width: min(100%, 620px);
+
+    filter:
+        drop-shadow(
+            0 35px 80px rgba(0,0,0,.75)
+        )
+        drop-shadow(
+            0 0 50px rgba(255,157,0,.08)
+        );
+
+    animation:
+        float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features {
+    padding: 30px 0 110px;
+}
+
+.container {
+    width: min(
+        calc(100% - 40px),
+        var(--max)
+    );
+
+    margin: auto;
+}
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+.feature-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,157,0,.055),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,157,0,.18);
+
+    border-radius: 18px;
+
+    padding: 25px 20px;
+
+    text-align: center;
+
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(255,157,0,.55);
+
+    background:
+        rgba(255,157,0,.08);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 15px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        rgba(255,157,0,.10);
+
+    border:
+        1px solid rgba(255,157,0,.25);
+
+    color: var(--orange);
+
+    font-size: 25px;
+}
+
+.feature-card h3 {
+    font-size: 16px;
+
+    margin-bottom: 7px;
+}
+
+.feature-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    padding: 110px 0;
+}
+
+.section-header {
+    text-align: center;
+
+    max-width: 760px;
+
+    margin: 0 auto 60px;
+}
+
+.section-label {
+    color: var(--orange);
+
+    text-transform: uppercase;
+
+    font-size: 12px;
+
+    font-weight: 850;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size:
+        clamp(38px, 5vw, 60px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    font-weight: 900;
+
+    margin-bottom: 17px;
+}
+
+.section-title span {
+    color: var(--orange);
+}
+
+.section-subtitle {
+    color: var(--muted);
+
+    font-size: 18px;
+}
+
+/* =========================
+   SHOWCASE
+========================= */
+
+.showcase {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 70px;
+
+    margin-bottom: 140px;
+}
+
+.showcase.reverse {
+    direction: rtl;
+}
+
+.showcase.reverse > * {
+    direction: ltr;
+}
+
+.showcase-image {
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.showcase-image::before {
+    content: "";
+
+    position: absolute;
+
+    width: 70%;
+    height: 70%;
+
+    left: 15%;
+    top: 15%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,157,0,.17),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    z-index: -1;
+}
+
+.showcase-image img {
+    max-height: 680px;
+
+    width: auto;
+
+    max-width: 100%;
+
+    border-radius: 25px;
+
+    filter:
+        drop-shadow(
+            0 35px 60px rgba(0,0,0,.6)
+        );
+}
+
+.showcase-content {
+    max-width: 530px;
+}
+
+.showcase-number {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--orange);
+
+    color: #111;
+
+    font-weight: 900;
+
+    margin-bottom: 22px;
+}
+
+.showcase h2 {
+    font-size: 42px;
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 20px;
+}
+
+.showcase h2 span {
+    color: var(--orange);
+}
+
+.showcase p {
+    color: var(--muted);
+
+    font-size: 18px;
+
+    margin-bottom: 25px;
+}
+
+.check-list {
+    list-style: none;
+
+    display: grid;
+
+    gap: 13px;
+}
+
+.check-list li {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #ddd;
+}
+
+.check {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(36,212,122,.1);
+
+    border:
+        1px solid rgba(36,212,122,.3);
+
+    color: var(--green);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 13px;
+
+    flex-shrink: 0;
+}
+
+/* =========================
+   DARK PANEL
+========================= */
+
+.dark-panel {
+    padding: 100px 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,157,0,.10),
+            transparent 50%
+        );
+
+    border-top:
+        1px solid rgba(255,255,255,.05);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background: #0d0f12;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35);
+
+    transition: .35s;
+}
+
+.gallery-item:hover {
+    transform:
+        translateY(-8px) scale(1.01);
+
+    border-color:
+        rgba(255,157,0,.4);
+}
+
+.gallery-item img {
+    width: 100%;
+
+    height: 560px;
+
+    object-fit: cover;
+
+    object-position: top;
+}
+
+.gallery-caption {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding:
+        35px 22px 20px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.92)
+        );
+}
+
+.gallery-caption h3 {
+    font-size: 20px;
+}
+
+.gallery-caption p {
+    color: #bbb;
+
+    font-size: 13px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-section {
+    padding: 120px 0;
+}
+
+.stats-box {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    border:
+        1px solid rgba(255,157,0,.22);
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,157,0,.06),
+            rgba(255,255,255,.02)
+        );
+}
+
+.stat {
+    text-align: center;
+
+    padding: 40px 20px;
+
+    border-right:
+        1px solid rgba(255,255,255,.08);
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat strong {
+    display: block;
+
+    font-size: 40px;
+
+    color: var(--orange);
+
+    font-weight: 900;
+}
+
+.stat span {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    padding: 110px 20px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.cta::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 300px;
+
+    left: 50%;
+    top: 30%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,157,0,.18),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+
+    max-width: 750px;
+
+    margin: auto;
+}
+
+.cta h2 {
+    font-size:
+        clamp(40px, 6vw, 65px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+}
+
+.cta h2 span {
+    color: var(--orange);
+}
+
+.cta p {
+    color: var(--muted);
+
+    font-size: 18px;
+
+    margin-bottom: 32px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top:
+        1px solid rgba(255,255,255,.08);
+
+    padding:
+        55px 0 30px;
+
+    background: #030405;
+}
+
+.footer-inner {
+    width: min(
+        calc(100% - 40px),
+        var(--max)
+    );
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.footer-brand {
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+.footer-brand strong {
+    color: white;
+
+    font-size: 17px;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+
+    color: #999;
+
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--orange);
+}
+
+.copyright {
+    text-align: center;
+
+    color: #555;
+
+    font-size: 12px;
+
+    margin-top: 40px;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        order: -1;
+    }
+
+    .hero-image img {
+        width: 90%;
+    }
+
+    .feature-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .showcase,
+    .showcase.reverse {
+        grid-template-columns: 1fr;
+
+        direction: ltr;
+
+        text-align: center;
+    }
+
+    .showcase-content {
+        margin: auto;
+    }
+
+    .check-list {
+        text-align: left;
+
+        max-width: 390px;
+
+        margin: auto;
+    }
+
+    .gallery {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .gallery-item img {
+        height: 500px;
+    }
+
+    .stats-box {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .stat:nth-child(-n+2) {
+        border-bottom:
+            1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-inner {
+        flex-direction: column;
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 68px;
+    }
+
+    .nav-inner {
+        width:
+            calc(100% - 25px);
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .logo-mark {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding-top: 105px;
+
+        padding-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2.5px;
+    }
+
+    .hero-description {
+        font-size: 17px;
+    }
+
+    .container {
+        width:
+            calc(100% - 28px);
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .showcase {
+        margin-bottom: 85px;
+
+        gap: 40px;
+    }
+
+    .showcase h2 {
+        font-size: 34px;
+    }
+
+    .showcase p {
+        font-size: 16px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item img {
+        height: auto;
+
+        max-height: 700px;
+    }
+
+    .stats-box {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none !important;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.08);
+    }
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+    .cta {
+        padding: 80px 15px;
+    }
+
+    .cta h2 {
+        font-size: 42px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-mark">
+                <span>⏰</span>
+            </div>
+
+            <div class="logo-text">
+                Alarm<span>ify</span>
+            </div>
+
+        </a>
+
+
+        <!-- EXACTLY THREE NAVBAR OPTIONS -->
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="mailto:rkwa.technologies@gmail.com">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="hero-content reveal">
+
+            <div class="eyebrow">
+                ✦ SMART ALARM CLOCK
+            </div>
+
+            <h1>
+                Wake Up<br>
+                The <span>Right Way.</span>
+            </h1>
+
+            <p class="hero-description">
+
+                Powerful. Reliable. Mission based.
+
+                <strong>Alarmify</strong>
+                helps you wake up, complete your morning challenge,
+                and start your day with purpose.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#features"
+                    class="primary-btn"
+                >
+                    ⏰ Explore Alarmify
+                </a>
+
+                <a
+                    href="#missions"
+                    class="secondary-btn"
+                >
+                    Discover Features →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image reveal">
+
+            <img
+                src="front.png"
+                alt="Alarmify Smart Alarm Clock"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features" id="features">
+
+    <div class="container">
+
+        <div class="feature-grid">
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    🛡
+                </div>
+
+                <h3>
+                    Anti-Uninstall
+                </h3>
+
+                <p>
+                    Keep active alarms protected.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    🔊
+                </div>
+
+                <h3>
+                    Volume Lock
+                </h3>
+
+                <p>
+                    Keep your alarm loud until the task is complete.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Mission Based
+                </h3>
+
+                <p>
+                    Complete challenges before dismissing alarms.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    ☀
+                </div>
+
+                <h3>
+                    Dark & Light UI
+                </h3>
+
+                <p>
+                    Choose the interface that's right for you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MISSIONS
+========================= -->
+
+<section class="section" id="missions">
+
+    <div class="container">
+
+        <div class="section-header reveal">
+
+            <div class="section-label">
+                WAKE-UP MISSIONS
+            </div>
+
+            <h2 class="section-title">
+                Don't Just Wake Up.<br>
+                <span>Prove You're Awake.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Turn off your alarm by completing a challenge.
+                Choose the mission that gets you moving.
+            </p>
+
+        </div>
+
+
+        <div class="showcase">
+
+            <div class="showcase-image reveal">
+
+                <img
+                    src="photo 6.png"
+                    alt="Alarmify Wake-Up Missions"
+                >
+
+            </div>
+
+
+            <div class="showcase-content reveal">
+
+                <div class="showcase-number">
+                    01
+                </div>
+
+                <h2>
+                    Wake-Up <span>Missions</span>
+                </h2>
+
+                <p>
+                    Alarmify makes waking up more than just pressing
+                    a button. Complete your selected mission before
+                    the alarm can be dismissed.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Math Challenge
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Eye Blink Challenge
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Steps Challenge
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        QR Scan Challenge
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Shake Challenge
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Memory Challenge
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROTECTION
+========================= -->
+
+<section class="dark-panel">
+
+    <div class="container">
+
+        <div class="showcase reverse">
+
+            <div class="showcase-image reveal">
+
+                <img
+                    src="photo 5.png"
+                    alt="Alarmify Volume Lock and Anti-Uninstall"
+                >
+
+            </div>
+
+
+            <div class="showcase-content reveal">
+
+                <div class="showcase-number">
+                    02
+                </div>
+
+                <h2>
+                    Stay Awake.<br>
+                    Stay <span>Protected.</span>
+                </h2>
+
+                <p>
+                    Alarmify is designed to help prevent accidental
+                    dismissal and keep your wake-up routine on track.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Volume Lock
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Anti-Uninstall Protection
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Complete Task to Dismiss
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Alarm Protection
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EYE BLINK
+========================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="showcase">
+
+            <div class="showcase-image reveal">
+
+                <img
+                    src="photo 4.png"
+                    alt="Alarmify Eye Blink Challenge"
+                >
+
+            </div>
+
+
+            <div class="showcase-content reveal">
+
+                <div class="showcase-number">
+                    03
+                </div>
+
+                <h2>
+                    Eye Blink <span>Challenge</span>
+                </h2>
+
+                <p>
+                    Use the camera-based eye blink challenge to
+                    complete your wake-up mission before dismissing
+                    the alarm.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Eye Blink Detection
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Adjustable Blink Count
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Stay in Frame
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Complete the Challenge
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DARK / LIGHT
+========================= -->
+
+<section class="dark-panel">
+
+    <div class="container">
+
+        <div class="section-header reveal">
+
+            <div class="section-label">
+                YOUR STYLE
+            </div>
+
+            <h2 class="section-title">
+                One App.<br>
+                <span>Two Themes.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Switch between Dark and Light UI for a comfortable
+                experience day and night.
+            </p>
+
+        </div>
+
+
+        <div class="showcase">
+
+            <div class="showcase-image reveal">
+
+                <img
+                    src="photo 3.png"
+                    alt="Alarmify Dark and Light UI"
+                >
+
+            </div>
+
+
+            <div class="showcase-content reveal">
+
+                <div class="showcase-number">
+                    04
+                </div>
+
+                <h2>
+                    Dark & <span>Light UI</span>
+                </h2>
+
+                <p>
+                    A clean, modern interface designed to look great
+                    whether you're setting an alarm during the day or
+                    checking your schedule at night.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Dark Mode
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Light Mode
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Easy Theme Switching
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Modern Interface
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="showcase reverse">
+
+            <div class="showcase-image reveal">
+
+                <img
+                    src="photo2.png"
+                    alt="Alarmify Detailed Statistics"
+                >
+
+            </div>
+
+
+            <div class="showcase-content reveal">
+
+                <div class="showcase-number">
+                    05
+                </div>
+
+                <h2>
+                    Track Your <span>Progress.</span>
+                </h2>
+
+                <p>
+                    See how consistently you're waking up and completing
+                    your alarms. Use your statistics to build a stronger
+                    morning routine.
+                </p>
+
+                <ul class="check-list">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Wake Success Rate
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Completed Alarms
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Average Dismiss Time
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Snooze Tracking
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        7-Day Wake Consistency
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCREENSHOTS
+========================= -->
+
+<section class="dark-panel">
+
+    <div class="container">
+
+        <div class="section-header reveal">
+
+            <div class="section-label">
+                INSIDE ALARMIFY
+            </div>
+
+            <h2 class="section-title">
+                Built For Better<br>
+                <span>Mornings.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Explore the Alarmify experience.
+            </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="photo1.png"
+                    alt="Alarmify Smart Alarm Interface"
+                >
+
+                <div class="gallery-caption">
+
+                    <h3>
+                        Smart Alarms
+                    </h3>
+
+                    <p>
+                        Simple and powerful alarm management.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="photo 5.png"
+                    alt="Alarmify Protection Features"
+                >
+
+                <div class="gallery-caption">
+
+                    <h3>
+                        Wake Protection
+                    </h3>
+
+                    <p>
+                        Volume Lock and Anti-Uninstall features.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="photo 6.png"
+                    alt="Alarmify Wake-Up Missions"
+                >
+
+                <div class="gallery-caption">
+
+                    <h3>
+                        Wake-Up Missions
+                    </h3>
+
+                    <p>
+                        Challenges designed to get you moving.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="stats-box reveal">
+
+            <div class="stat">
+                <strong>6+</strong>
+                <span>Wake-Up Missions</span>
+            </div>
+
+            <div class="stat">
+                <strong>2</strong>
+                <span>Beautiful Themes</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>Alarm Ready</span>
+            </div>
+
+            <div class="stat">
+                <strong>1</strong>
+                <span>Goal — Wake Up</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <div class="cta-content reveal">
+
+        <div class="eyebrow">
+            ⏰ START YOUR MORNING DIFFERENTLY
+        </div>
+
+        <h2>
+            Wake Up<br>
+            The <span>Right Way.</span>
+        </h2>
+
+        <p>
+            Set your alarm. Complete your mission.
+            Start your day stronger.
+        </p>
+
+        <a
+            href="mailto:rkwa.technologies@gmail.com"
+            class="primary-btn"
+        >
+            ✉ Contact Us
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+
+            <strong>
+                Alarmify
+            </strong>
+
+            <br>
+
+            Smart Alarm Clock
+
+        </div>
+
+
+        <!-- THREE FOOTER OPTIONS -->
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="mailto:rkwa.technologies@gmail.com">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Alarmify. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                    observer
+                        .unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* =========================
+   NAVBAR SHADOW
+========================= */
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        const nav =
+            document.querySelector(".navbar");
+
+        if (window.scrollY > 20) {
+
+            nav.style.boxShadow =
+                "0 10px 40px rgba(0,0,0,.30)";
+
+        } else {
+
+            nav.style.boxShadow =
+                "none";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
