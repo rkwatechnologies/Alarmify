@@ -1,1063 +1,1166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Privacy Policy | Alarm – Wake You Up</title>
-
-    <meta name="description" content="Privacy Policy for Alarm – Wake You Up. Learn how we handle your information, permissions, camera access, advertising, and privacy.">
-
-    <style>
-        :root {
-            --background: #f7f8fc;
-            --surface: #ffffff;
-            --text: #17181c;
-            --secondary: #686b75;
-
-            /* ORANGE THEME */
-            --primary: #ff7a00;
-            --primary-dark: #f05f00;
-            --primary-light: #fff1e6;
-
-            --border: #e7e7ee;
-            --success: #16835b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Arial,
-                sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================== */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav {
-            width: 100%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .brand-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            flex: 0 0 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 13px;
-
-            background: linear-gradient(
-                135deg,
-                #ff7a00,
-                #ff9d3d
-            );
-
-            box-shadow: 0 8px 20px rgba(255, 122, 0, 0.22);
-        }
-
-        .brand-icon img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            border-radius: inherit;
-        }
-
-        .brand > span:last-child {
-            white-space: nowrap;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--secondary);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            text-align: center;
-            padding: 90px 24px 80px;
-
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(255, 122, 0, 0.16),
-                    transparent 55%
-                );
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 8px 15px;
-            border-radius: 50px;
-
-            background: var(--primary-light);
-            color: var(--primary);
-
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 7vw, 66px);
-            line-height: 1.05;
-            letter-spacing: -2.5px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero-description {
-            max-width: 680px;
-            margin: auto;
-            color: var(--secondary);
-            font-size: 17px;
-        }
-
-        .updated {
-            margin-top: 20px;
-            color: #858791;
-            font-size: 13px;
-        }
-
-        /* =========================
-           MAIN POLICY
-        ========================== */
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: -20px auto 80px;
-            padding: 0 24px;
-        }
-
-        .policy {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            overflow: hidden;
-
-            box-shadow:
-                0 25px 70px rgba(25, 25, 50, 0.08);
-        }
-
-        .content {
-            padding: 55px;
-        }
-
-        /* =========================
-           INTRO
-        ========================== */
-
-        .intro {
-            padding: 26px 28px;
-            margin-bottom: 48px;
-            border-radius: 18px;
-
-            background: var(--primary-light);
-
-            border: 1px solid rgba(255, 122, 0, 0.12);
-        }
-
-        .intro p {
-            color: #4f4b61;
-            margin-bottom: 14px;
-        }
-
-        .intro p:last-child {
-            margin-bottom: 0;
-        }
-
-        .intro strong {
-            color: var(--primary);
-        }
-
-        /* =========================
-           SECTIONS
-        ========================== */
-
-        .section {
-            margin-bottom: 42px;
-            padding-bottom: 42px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .section-number {
-            margin-bottom: 6px;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-        }
-
-        .section h2 {
-            margin-bottom: 15px;
-            font-size: 25px;
-            line-height: 1.3;
-            letter-spacing: -0.4px;
-        }
-
-        .section h3 {
-            margin-top: 24px;
-            margin-bottom: 8px;
-            font-size: 17px;
-        }
-
-        .section p {
-            margin-bottom: 14px;
-            color: #50535c;
-        }
-
-        /* =========================
-           LISTS
-        ========================== */
-
-        ul {
-            margin: 15px 0 12px 22px;
-        }
-
-        li {
-            margin-bottom: 9px;
-            padding-left: 4px;
-            color: #50535c;
-        }
-
-        li::marker {
-            color: var(--primary);
-        }
-
-        /* =========================
-           INFORMATION CARDS
-        ========================== */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin: 25px 0 5px;
-        }
-
-        .card {
-            padding: 23px;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(30, 30, 60, 0.06);
-        }
-
-        .card-icon {
-            width: 43px;
-            height: 43px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            margin-bottom: 14px;
-            border-radius: 12px;
-
-            background: var(--primary-light);
-            color: var(--primary);
-
-            font-size: 19px;
-        }
-
-        .card h3 {
-            margin: 0 0 7px;
-            font-size: 16px;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--secondary);
-        }
-
-        /* =========================
-           HIGHLIGHT
-        ========================== */
-
-        .highlight {
-            margin: 22px 0;
-            padding: 21px 23px;
-            border-radius: 15px;
-
-            background: #f4fbf8;
-            border: 1px solid #d8f0e6;
-            border-left: 4px solid var(--success);
-        }
-
-        .highlight strong {
-            color: var(--success);
-        }
-
-        .highlight p {
-            margin: 8px 0 0;
-        }
-
-        /* =========================
-           CONTACT
-        ========================== */
-
-        .contact {
-            margin-top: 22px;
-            padding: 28px;
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff3e8,
-                    #fff9f4
-                );
-
-            border: 1px solid #ffe0c2;
-        }
-
-        .contact h3 {
-            margin: 0 0 8px;
-            font-size: 19px;
-        }
-
-        .contact p {
-            margin-bottom: 8px;
-        }
-
-        .contact a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .contact a:hover {
-            text-decoration: underline;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        footer {
-            background: #ffffff;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer {
-            width: 100%;
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px 24px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-name {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .footer-copy {
-            color: var(--secondary);
-            font-size: 13px;
-        }
-
-        /* =========================
-           MOBILE
-        ========================== */
-
-        @media (max-width: 700px) {
-
-            .nav {
-                padding: 12px 18px;
-                gap: 14px;
-            }
-
-            .brand {
-                font-size: 15px;
-                gap: 9px;
-            }
-
-            .brand-icon {
-                width: 37px;
-                height: 37px;
-                min-width: 37px;
-                flex-basis: 37px;
-                border-radius: 11px;
-            }
-
-            .brand > span:last-child {
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .nav-link {
-                font-size: 13px;
-            }
-
-            .hero {
-                padding: 65px 20px 60px;
-            }
-
-            .hero h1 {
-                font-size: 43px;
-                letter-spacing: -1.8px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            .container {
-                padding: 0 12px;
-                margin-top: -15px;
-            }
-
-            .policy {
-                border-radius: 20px;
-            }
-
-            .content {
-                padding: 30px 21px;
-            }
-
-            .intro {
-                padding: 21px;
-                margin-bottom: 35px;
-            }
-
-            .section {
-                margin-bottom: 34px;
-                padding-bottom: 34px;
-            }
-
-            .section h2 {
-                font-size: 22px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Privacy Policy – Alarmify</title>
+
+<meta name="description"
+content="Privacy Policy for Alarmify – Smart Alarm Clock.">
+
+<meta name="theme-color" content="#ff9800">
+
+<style>
+:root{
+    --orange:#ff9800;
+    --orange-light:#ffb52e;
+    --orange-dark:#f57c00;
+
+    --black:#050505;
+    --black-2:#0a0a0a;
+    --black-3:#111111;
+
+    --white:#ffffff;
+    --gray:#a7a7a7;
+    --gray-light:#d6d6d6;
+
+    --border:rgba(255,255,255,.10);
+
+    --max-width:1050px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,152,0,.13),
+            transparent 35%
+        ),
+        var(--black);
+
+    color:var(--white);
+
+    line-height:1.75;
+
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:9999;
+
+    height:76px;
+
+    background:
+        rgba(5,5,5,.84);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.nav-container{
+    width:min(
+        calc(100% - 40px),
+        1200px
+    );
+
+    height:100%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    font-size:21px;
+
+    font-weight:850;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--orange-light),
+            var(--orange-dark)
+        );
+
+    box-shadow:
+        0 0 35px rgba(255,152,0,.25);
+
+    font-size:22px;
+}
+
+.logo span{
+    color:var(--orange);
+}
+
+.nav-links{
+    display:flex;
+
+    align-items:center;
+
+    gap:34px;
+
+    color:#c7c7c7;
+
+    font-size:14px;
+
+    font-weight:650;
+}
+
+.nav-links a{
+    position:relative;
+
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--orange);
+}
+
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-9px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--orange);
+
+    transition:.25s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.policy-hero{
+    padding:
+        150px 20px 75px;
+
+    text-align:center;
+
+    position:relative;
+}
+
+.policy-hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+    height:350px;
+
+    left:50%;
+    top:80px;
+
+    transform:translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,152,0,.14),
+            transparent 70%
+        );
+
+    pointer-events:none;
+}
+
+.badge{
+    position:relative;
+
+    display:inline-flex;
+
+    padding:9px 17px;
+
+    border-radius:999px;
+
+    color:var(--orange);
+
+    background:
+        rgba(255,152,0,.08);
+
+    border:
+        1px solid rgba(255,152,0,.27);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    margin-bottom:24px;
+}
+
+.policy-hero h1{
+    position:relative;
+
+    font-size:
+        clamp(48px,7vw,78px);
+
+    line-height:1;
+
+    letter-spacing:-3px;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.policy-hero h1 span{
+    color:var(--orange);
+}
+
+.policy-hero p{
+    position:relative;
+
+    max-width:720px;
+
+    margin:auto;
+
+    color:var(--gray);
+
+    font-size:18px;
+}
+
+.updated{
+    margin-top:18px;
+
+    color:#777;
+
+    font-size:13px;
+}
+
+/* =========================
+   POLICY
+========================= */
+
+.container{
+    width:min(
+        calc(100% - 40px),
+        var(--max-width)
+    );
+
+    margin:auto;
+}
+
+.policy{
+    margin-bottom:100px;
+
+    padding:55px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,152,0,.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.35);
+}
+
+/* INTRO */
+
+.introduction{
+    padding:25px 27px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,152,0,.12),
+            rgba(255,152,0,.035)
+        );
+
+    border:
+        1px solid rgba(255,152,0,.25);
+
+    margin-bottom:45px;
+
+    color:var(--gray);
+}
+
+.introduction strong{
+    color:var(--orange);
+}
+
+/* SECTIONS */
+
+.policy-section{
+    padding-bottom:35px;
+
+    margin-bottom:35px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
+}
+
+.policy-section:last-child{
+    border-bottom:none;
+
+    padding-bottom:0;
+
+    margin-bottom:0;
+}
+
+.policy-section h2{
+    font-size:25px;
+
+    line-height:1.25;
+
+    margin-bottom:15px;
+}
+
+.policy-section h2 span{
+    color:var(--orange);
+}
+
+.policy-section h3{
+    font-size:18px;
+
+    margin:
+        23px 0 8px;
+}
+
+.policy-section p{
+    color:var(--gray);
+
+    font-size:15px;
+
+    margin-bottom:14px;
+}
+
+.policy-section ul{
+    color:var(--gray);
+
+    margin:
+        12px 0 18px 25px;
+}
+
+.policy-section li{
+    margin-bottom:7px;
+}
+
+/* HIGHLIGHT */
+
+.highlight{
+    padding:20px 22px;
+
+    margin:20px 0;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,152,0,.06);
+
+    border-left:
+        3px solid var(--orange);
+
+    color:var(--gray);
+}
+
+.highlight strong{
+    color:var(--orange);
+}
+
+/* CONTACT */
+
+.contact-box{
+    padding:25px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,152,0,.10),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,152,0,.23);
+}
+
+.contact-box strong{
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.contact-box a{
+    color:var(--orange);
+
+    font-weight:750;
+}
+
+.contact-box a:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:
+        50px 0 25px;
+
+    background:#030303;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+}
+
+.footer-container{
+    width:min(
+        calc(100% - 40px),
+        1200px
+    );
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.footer-brand{
+    color:#888;
+
+    font-size:13px;
+}
+
+.footer-brand strong{
+    color:white;
+
+    font-size:19px;
+}
+
+.footer-links{
+    display:flex;
+
+    gap:28px;
+
+    color:#999;
+
+    font-size:14px;
+}
+
+.footer-links a:hover{
+    color:var(--orange);
+}
+
+.copyright{
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#555;
+
+    font-size:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .navbar{
+        height:68px;
+    }
+
+    .nav-container{
+        width:calc(100% - 24px);
+    }
+
+    .logo{
+        font-size:17px;
+    }
+
+    .logo-icon{
+        width:36px;
+        height:36px;
+    }
+
+    .nav-links{
+        gap:13px;
+        font-size:11px;
+    }
+
+    .policy-hero{
+        padding:
+            110px 20px 55px;
+    }
+
+    .policy-hero h1{
+        font-size:48px;
+        letter-spacing:-2px;
+    }
+
+    .policy-hero p{
+        font-size:16px;
+    }
+
+    .container{
+        width:calc(100% - 24px);
+    }
+
+    .policy{
+        padding:28px 22px;
+        border-radius:20px;
+    }
+
+    .policy-section h2{
+        font-size:22px;
+    }
+
+    .policy-section p,
+    .policy-section li{
+        font-size:14px;
+    }
+
+    .footer-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .footer-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <nav class="nav">
+<!-- =========================
+     SAME NAVBAR
+========================= -->
 
-        <a href="#" class="brand">
+<nav class="navbar">
 
-            <span class="brand-icon">
-                <img
-                    src="app-icon.png"
-                    alt="Alarm – Wake You Up App Icon"
-                >
-            </span>
+    <div class="nav-container">
 
-            <span>Alarm – Wake You Up</span>
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                ⏰
+            </div>
+
+            <div>
+                Alarm<span>ify</span>
+            </div>
 
         </a>
 
-        <a href="#contact" class="nav-link">
-            Contact
-        </a>
 
-    </nav>
-</header>
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="privacy.html" class="active">
+                Privacy
+            </a>
+
+            <a href="mailto:rkwa.technologies@gmail.com">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
 
 
-<section class="hero">
+<!-- =========================
+     PRIVACY HERO
+========================= -->
+
+<section class="policy-hero">
 
     <div class="badge">
-        🔒 Your Privacy Matters
+        🔒 YOUR PRIVACY MATTERS
     </div>
 
     <h1>
         Privacy <span>Policy</span>
     </h1>
 
-    <p class="hero-description">
-        Learn how Alarm – Wake You Up handles your information,
-        permissions, camera access, advertising, and privacy.
+    <p>
+        This Privacy Policy explains how Alarmify handles
+        information, permissions, advertising, and camera-based
+        wake-up features.
     </p>
 
-    <p class="updated">
+    <div class="updated">
         Last updated: September 3, 2026
-    </p>
+    </div>
 
 </section>
 
 
+<!-- =========================
+     POLICY CONTENT
+========================= -->
+
 <main class="container">
 
-    <article class="policy">
+<div class="policy">
 
-        <div class="content">
 
-            <!-- INTRODUCTION -->
+    <div class="introduction">
 
-            <div class="intro">
+        Welcome to
+        <strong>Alarmify – Smart Alarm Clock</strong>
+        ("Alarmify", "we", "our", or "us").
 
-                <p>
-                    Welcome to <strong>Alarm – Wake You Up</strong>
-                    . We respect your privacy
-                    and are committed to protecting your information.
-                </p>
+        We respect your privacy and are committed to being
+        transparent about how the application works.
 
-                <p>
-                    This Privacy Policy explains what information the App
-                    may access or process, how that information is used,
-                    and your choices regarding your information.
-                </p>
+        This Privacy Policy describes the information and
+        permissions that may be involved when you use Alarmify.
 
-            </div>
+    </div>
 
 
-            <!-- 01 -->
+    <!-- 1 -->
 
-            <section class="section">
+    <section class="policy-section">
 
-                <div class="section-number">
-                    01 · Information
-                </div>
+        <h2>
+            1. Information We <span>Collect</span>
+        </h2>
 
-                <h2>
-                    Information We Collect
-                </h2>
+        <p>
+            Alarmify is primarily designed to provide alarm,
+            wake-up mission, volume control, protection,
+            statistics, and related functionality.
+        </p>
 
-                <p>
-                    Alarm – Wake You Up is primarily designed to provide
-                    alarm, wake-up, and challenge functionality. Most
-                    alarm-related information is stored locally on your
-                    device.
-                </p>
+        <p>
+            Depending on the features you use, the application
+            may access or process certain information and
+            device permissions required for those features.
+        </p>
 
-                <div class="cards">
+        <h3>
+            Alarm and App Settings
+        </h3>
 
-                    <div class="card">
+        <p>
+            Alarm times, repeat schedules, selected alarm sounds,
+            selected missions, theme preferences, and other
+            application settings may be stored locally on your
+            device to provide the application's functionality.
+        </p>
 
-                        <div class="card-icon">⏰</div>
+    </section>
 
-                        <h3>
-                            Alarm & App Settings
-                        </h3>
 
-                        <p>
-                            Alarm times, schedules, repeat settings,
-                            sounds, challenges, and preferences may be
-                            stored locally on your device.
-                        </p>
+    <!-- 2 -->
 
-                    </div>
+    <section class="policy-section">
 
+        <h2>
+            2. Device <span>Permissions</span>
+        </h2>
 
-                    <div class="card">
+        <p>
+            Alarmify may request permissions that are necessary
+            for specific features.
+        </p>
 
-                        <div class="card-icon">📷</div>
+        <ul>
 
-                        <h3>
-                            Camera
-                        </h3>
+            <li>
+                Notification permission for alarm notifications
+                and related notifications.
+            </li>
 
-                        <p>
-                            Camera access may be used for camera-based
-                            wake-up challenges, such as eye-blink detection.
-                        </p>
+            <li>
+                Alarm and scheduling functionality for triggering
+                alarms at the selected times.
+            </li>
 
-                    </div>
+            <li>
+                Full-screen notification functionality where
+                supported and required for the alarm experience.
+            </li>
 
+            <li>
+                Audio and vibration functionality for alarm alerts.
+            </li>
 
-                    <div class="card">
+            <li>
+                Camera permission when using the Eye Blink Challenge.
+            </li>
 
-                        <div class="card-icon">📱</div>
+        </ul>
 
-                        <h3>
-                            Device Information
-                        </h3>
+        <p>
+            You can manage application permissions through your
+            Android device settings.
+        </p>
 
-                        <p>
-                            Third-party services may process technical
-                            information such as device and operating
-                            system information.
-                        </p>
+    </section>
 
-                    </div>
 
+    <!-- 3 -->
 
-                    <div class="card">
+    <section class="policy-section">
 
-                        <div class="card-icon">🔔</div>
+        <h2>
+            3. Camera and Eye Blink <span>Challenge</span>
+        </h2>
 
-                        <h3>
-                            Notifications
-                        </h3>
+        <p>
+            Alarmify includes an Eye Blink Challenge that can use
+            the device camera to detect eye-blink activity.
+        </p>
 
-                        <p>
-                            Notification access may be required to alert
-                            you when your alarm is scheduled.
-                        </p>
+        <div class="highlight">
 
-                    </div>
+            <strong>
+                Camera Privacy:
+            </strong>
 
-                </div>
-
-            </section>
-
-
-            <!-- 02 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    02 · Usage
-                </div>
-
-                <h2>
-                    How We Use Information
-                </h2>
-
-                <p>
-                    Information and permissions are used to provide
-                    the App's functionality, including:
-                </p>
-
-                <ul>
-                    <li>Scheduling and triggering alarms.</li>
-                    <li>Playing alarm sounds.</li>
-                    <li>Providing vibration and notifications.</li>
-                    <li>Displaying alarm screens.</li>
-                    <li>Providing wake-up challenges.</li>
-                    <li>Detecting completion of supported challenges.</li>
-                    <li>Remembering your alarm and app settings.</li>
-                    <li>Displaying advertisements.</li>
-                    <li>Improving app stability and performance.</li>
-                </ul>
-
-            </section>
-
-
-            <!-- 03 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    03 · Camera
-                </div>
-
-                <h2>
-                    Camera & Eye-Blink Challenges
-                </h2>
-
-                <p>
-                    If you choose to use a camera-based wake-up challenge,
-                    such as an eye-blink challenge, the App requires access
-                    to your device's camera.
-                </p>
-
-                <div class="highlight">
-
-                    <strong>Camera privacy:</strong>
-
-                    <p>
-                        Camera access is used for the selected challenge.
-                        The App does not intentionally record, store, or
-                        upload your camera video or photographs to our
-                        servers. Camera processing is intended to occur
-                        on your device.
-                    </p>
-
-                </div>
-
-                <p>
-                    You can manage or revoke camera permission through
-                    your Android device settings.
-                </p>
-
-            </section>
-
-
-            <!-- 04 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    04 · Advertising
-                </div>
-
-                <h2>
-                    Advertising
-                </h2>
-
-                <p>
-                    The App may display advertisements provided by
-                    third-party advertising services, including
-                    Google AdMob.
-                </p>
-
-                <p>
-                    Advertising providers may collect and process
-                    information such as advertising identifiers,
-                    device information, approximate location, and
-                    information about interactions with advertisements,
-                    in accordance with their own privacy policies
-                    and applicable laws.
-                </p>
-
-                <p>
-                    We do not control the data practices of third-party
-                    advertising providers.
-                </p>
-
-            </section>
-
-
-            <!-- 05 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    05 · Third Parties
-                </div>
-
-                <h2>
-                    Third-Party Services
-                </h2>
-
-                <p>
-                    The App may use third-party services to provide
-                    advertising, application functionality, analytics,
-                    crash reporting, or other technical services.
-                </p>
-
-                <p>
-                    These services may process information according
-                    to their own privacy policies.
-                </p>
-
-                <ul>
-                    <li>Google AdMob</li>
-                    <li>Google Play Services</li>
-                    <li>Other technical services used by the App</li>
-                </ul>
-
-            </section>
-
-
-            <!-- 06 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    06 · Storage
-                </div>
-
-                <h2>
-                    Data Storage
-                </h2>
-
-                <p>
-                    Your alarm schedules, settings, and preferences
-                    may be stored locally on your device.
-                </p>
-
-                <p>
-                    We do not intentionally maintain a server containing
-                    your personal alarm schedules or camera recordings.
-                </p>
-
-                <p>
-                    Some third-party services, such as advertising or
-                    crash-reporting providers, may independently process
-                    information necessary to provide their services.
-                </p>
-
-            </section>
-
-
-            <!-- 07 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    07 · Sharing
-                </div>
-
-                <h2>
-                    Data Sharing
-                </h2>
-
-                <p>
-                    We do not sell or rent your personal information.
-                </p>
-
-                <p>
-                    We may allow third-party service providers to process
-                    information when necessary to provide services used
-                    by the App, such as advertising, analytics, crash
-                    reporting, or technical infrastructure.
-                </p>
-
-                <p>
-                    We may also disclose information when required by law,
-                    legal process, or a valid governmental request.
-                </p>
-
-            </section>
-
-
-            <!-- 08 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    08 · Security
-                </div>
-
-                <h2>
-                    Data Security
-                </h2>
-
-                <p>
-                    We take reasonable measures to protect information
-                    processed by the App and the services it uses.
-                </p>
-
-                <p>
-                    However, no method of electronic storage, processing,
-                    or transmission is completely secure. Therefore, we
-                    cannot guarantee absolute security.
-                </p>
-
-            </section>
-
-
-            <!-- 09 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    09 · Children
-                </div>
-
-                <h2>
-                    Children's Privacy
-                </h2>
-
-                <p>
-                    The App is not specifically directed toward children.
-                    We do not knowingly collect personal information from
-                    children through the App.
-                </p>
-
-                <p>
-                    If you believe that a child has provided personal
-                    information to us, please contact us so that we can
-                    investigate and take appropriate action.
-                </p>
-
-            </section>
-
-
-            <!-- 10 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    10 · Your Choices
-                </div>
-
-                <h2>
-                    Your Choices
-                </h2>
-
-                <p>
-                    You can control the permissions granted to the App
-                    through your Android device settings.
-                </p>
-
-                <ul>
-                    <li>Disable permissions you don't want to use.</li>
-                    <li>Manage notification permissions.</li>
-                    <li>Manage camera permission.</li>
-                    <li>Delete the App and its locally stored data.</li>
-                    <li>Control certain advertising preferences through your device or Google settings.</li>
-                </ul>
-
-                <p>
-                    Disabling certain permissions may prevent some App
-                    features from functioning correctly.
-                </p>
-
-            </section>
-
-
-            <!-- 11 -->
-
-            <section class="section">
-
-                <div class="section-number">
-                    11 · Updates
-                </div>
-
-                <h2>
-                    Changes to This Privacy Policy
-                </h2>
-
-                <p>
-                    We may update this Privacy Policy from time to time
-                    to reflect changes to the App, our services, or
-                    applicable legal requirements.
-                </p>
-
-                <p>
-                    When changes are made, we will update the
-                    "Last Updated" date at the top of this Privacy Policy.
-                </p>
-
-            </section>
-
-
-            <!-- 12 -->
-
-            <section class="section" id="contact">
-
-                <div class="section-number">
-                    12 · Contact
-                </div>
-
-                <h2>
-                    Contact Us
-                </h2>
-
-                <p>
-                    If you have any questions, concerns, or requests
-                    regarding this Privacy Policy or the privacy practices
-                    of Alarm – Wake You Up, please contact us.
-                </p>
-
-                <div class="contact">
-
-                    <h3>
-                        📧 Privacy Questions
-                    </h3>
-
-                    <p>
-                        Email us at:
-                    </p>
-
-                    <a href="mailto:rkwa.technologies@gmail.com">
-                        rkwa.technologies@gmail.com
-                    </a>
-
-                </div>
-
-            </section>
+            Camera access is used for the Eye Blink Challenge
+            when that feature is active. The feature is designed
+            to detect the required eye-blink actions and does not
+            intentionally require storing or uploading photographs
+            or video recordings.
 
         </div>
 
-    </article>
+        <p>
+            Camera access is not required for ordinary alarm
+            functionality when the Eye Blink Challenge is not being
+            used.
+        </p>
+
+    </section>
+
+
+    <!-- 4 -->
+
+    <section class="policy-section">
+
+        <h2>
+            4. <span>Advertising</span>
+        </h2>
+
+        <p>
+            Alarmify may display advertisements through third-party
+            advertising services, including Google AdMob.
+        </p>
+
+        <p>
+            Advertising providers may collect and process certain
+            information, such as advertising identifiers, device
+            information, approximate location, and information
+            related to advertising interactions, subject to their
+            own policies and applicable laws.
+        </p>
+
+        <p>
+            Third-party advertising providers operate independently
+            and may have their own privacy policies and data
+            practices.
+        </p>
+
+    </section>
+
+
+    <!-- 5 -->
+
+    <section class="policy-section">
+
+        <h2>
+            5. Third-Party <span>Services</span>
+        </h2>
+
+        <p>
+            Alarmify may use third-party services to provide
+            advertising, application functionality, diagnostics,
+            analytics, or other technical services.
+        </p>
+
+        <p>
+            Depending on the version of the application and the
+            services enabled, these providers may process information
+            according to their respective privacy policies.
+        </p>
+
+        <ul>
+
+            <li>
+                Google AdMob
+            </li>
+
+            <li>
+                Google Play Services
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- 6 -->
+
+    <section class="policy-section">
+
+        <h2>
+            6. How We Use <span>Information</span>
+        </h2>
+
+        <p>
+            Information and permissions associated with Alarmify
+            may be used to:
+        </p>
+
+        <ul>
+
+            <li>
+                Schedule and trigger alarms.
+            </li>
+
+            <li>
+                Display alarm notifications.
+            </li>
+
+            <li>
+                Play alarm sounds and provide vibration.
+            </li>
+
+            <li>
+                Provide wake-up missions.
+            </li>
+
+            <li>
+                Operate the Eye Blink Challenge.
+            </li>
+
+            <li>
+                Provide volume and wake-up protection features.
+            </li>
+
+            <li>
+                Store application preferences and statistics.
+            </li>
+
+            <li>
+                Display advertisements where applicable.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- 7 -->
+
+    <section class="policy-section">
+
+        <h2>
+            7. Local Data <span>Storage</span>
+        </h2>
+
+        <p>
+            Alarm settings, preferences, and certain statistics
+            may be stored locally on your device.
+        </p>
+
+        <p>
+            We do not intentionally operate a server for storing
+            your personal alarm schedules or private wake-up
+            information.
+        </p>
+
+    </section>
+
+
+    <!-- 8 -->
+
+    <section class="policy-section">
+
+        <h2>
+            8. Data <span>Sharing</span>
+        </h2>
+
+        <p>
+            We do not sell or rent your personal information.
+        </p>
+
+        <p>
+            Information may be processed by third-party service
+            providers when necessary to provide services such as
+            advertising or technical functionality.
+        </p>
+
+        <p>
+            Such third parties may process information according
+            to their own privacy policies and applicable legal
+            requirements.
+        </p>
+
+    </section>
+
+
+    <!-- 9 -->
+
+    <section class="policy-section">
+
+        <h2>
+            9. Data <span>Security</span>
+        </h2>
+
+        <p>
+            We take reasonable measures to protect information
+            processed by the application.
+        </p>
+
+        <p>
+            However, no electronic storage system or method of
+            transmission over the internet can be guaranteed to
+            be completely secure.
+        </p>
+
+    </section>
+
+
+    <!-- 10 -->
+
+    <section class="policy-section">
+
+        <h2>
+            10. Children's <span>Privacy</span>
+        </h2>
+
+        <p>
+            Alarmify is not specifically directed toward children.
+        </p>
+
+        <p>
+            We do not knowingly collect personal information from
+            children through the application.
+        </p>
+
+        <p>
+            If you believe that a child has provided personal
+            information to us, please contact us so that we can
+            review the situation and take appropriate action.
+        </p>
+
+    </section>
+
+
+    <!-- 11 -->
+
+    <section class="policy-section">
+
+        <h2>
+            11. Your <span>Choices</span>
+        </h2>
+
+        <p>
+            You can manage the permissions granted to Alarmify
+            through Android settings.
+        </p>
+
+        <p>
+            You may also stop using the application or delete
+            application data through your device settings, subject
+            to normal Android system behavior.
+        </p>
+
+    </section>
+
+
+    <!-- 12 -->
+
+    <section class="policy-section">
+
+        <h2>
+            12. Changes to This Privacy <span>Policy</span>
+        </h2>
+
+        <p>
+            We may update this Privacy Policy when the application,
+            our practices, or applicable legal requirements change.
+        </p>
+
+        <p>
+            When changes are made, the updated version will be
+            published on this page and the "Last updated" date
+            will be changed accordingly.
+        </p>
+
+    </section>
+
+
+    <!-- 13 -->
+
+    <section class="policy-section">
+
+        <h2>
+            13. <span>Contact Us</span>
+        </h2>
+
+        <p>
+            If you have any questions, concerns, or requests
+            regarding this Privacy Policy or Alarmify, you can
+            contact us by email.
+        </p>
+
+        <div class="contact-box">
+
+            <strong>
+                Alarmify Support
+            </strong>
+
+            <a href="mailto:rkwa.technologies@gmail.com">
+                rkwa.technologies@gmail.com
+            </a>
+
+        </div>
+
+    </section>
+
+
+</div>
 
 </main>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-    <div class="footer">
+    <div class="footer-container">
 
-        <div class="footer-name">
-            ⏰ Alarm – Wake You Up
+        <div class="footer-brand">
+
+            <strong>
+                Alarmify
+            </strong>
+
+            <br>
+
+            Smart Alarm Clock
+
         </div>
 
-        <div class="footer-copy">
-            © 2026 Alarm – Wake You Up. All rights reserved.
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="mailto:rkwa.technologies@gmail.com">
+                Contact
+            </a>
+
         </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Alarmify. All rights reserved.
 
     </div>
 
